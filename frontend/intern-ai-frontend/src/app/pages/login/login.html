@@ -1,0 +1,146 @@
+
+<div class="login-page">
+
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <div class="login-wrapper">
+
+    <!-- SOL TANITIM VİTRİNİ -->
+    <div class="login-intro">
+
+      <div class="logo">
+        <span>🧠</span>
+      </div>
+
+      <div class="brand">
+        INTERN<span>AI</span>
+      </div>
+
+      <h1>
+        Öğrenmeye<br>
+        <span>devam et.</span>
+      </h1>
+
+      <p>
+        Quizlerini tamamla, hedeflerine ulaş ve yazılım yolculuğunda seviye atla.
+      </p>
+
+      <div class="feature-list">
+
+        <div class="feature">
+          <div class="feature-icon">✓</div>
+          <span>Kaldığın yerden hemen devam et</span>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">✓</div>
+          <span>Güncel başarı rozetlerini görüntüle</span>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">✓</div>
+          <span>Haftalık hedeflerini yakala</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- GİRİŞ FORMU KARTI -->
+    <div class="login-card">
+
+      <div class="card-header">
+
+        <span class="eyebrow">HESAP GİRİŞİ</span>
+
+        <h2>Tekrar hoş geldin</h2>
+
+        <p>Öğrenme yolculuğuna kaldığın yerden devam et.</p>
+
+      </div>
+
+      <form (ngSubmit)="login()">
+
+        <!-- EMAIL -->
+        <div class="form-group">
+
+          <label for="email">E-posta</label>
+
+          <div class="input-wrapper">
+            <span class="input-icon">✉</span>
+            <input
+              id="email"
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="ornek@email.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+        </div>
+
+        <!-- ŞİFRE -->
+        <div class="form-group">
+
+          <label for="password">Şifre</label>
+
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="Şifrenizi girin"
+              autocomplete="current-password"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+            >
+              {{ showPassword ? '◉' : '○' }}
+            </button>
+          </div>
+
+        </div>
+
+        <!-- HATA MESAJI -->
+        <div class="message error" *ngIf="errorMessage">
+          <span>!</span>
+          {{ errorMessage }}
+        </div>
+
+        <!-- GİRİŞ BUTONU -->
+        <button
+          class="login-button"
+          type="submit"
+          [disabled]="submitting"
+        >
+          <span *ngIf="!submitting">Giriş Yap</span>
+          <span class="loading-content" *ngIf="submitting">
+            <span class="spinner"></span>
+            Giriş yapılıyor...
+          </span>
+        </button>
+
+      </form>
+
+      <div class="divider">
+        <span>veya</span>
+      </div>
+
+      <p class="register-link">
+        Henüz hesabın yok mu?
+        <a routerLink="/register">Kayıt Ol</a>
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,259 @@
+<div class="ai-page">
+
+  <div class="ai-background"></div>
+
+  <!-- HEADER -->
+  <header class="ai-header">
+
+    <button
+      class="back-button"
+      (click)="goBack()">
+
+      ←
+
+    </button>
+
+    <div class="header-title">
+
+      <div class="ai-logo">
+        🤖
+      </div>
+
+      <div>
+
+        <span>INTERN AI</span>
+
+        <h1>
+          AI Asistanı
+        </h1>
+
+      </div>
+
+    </div>
+
+@if (messages.length > 0) {
+
+  <button
+    class="new-chat-button"
+    (click)="clearChat()"
+    title="Yeni sohbet"
+    aria-label="Yeni sohbet">
+
+    <span class="new-chat-icon">＋</span>
+
+  </button>
+
+}
+
+  </header>
+
+
+  <!-- CHAT -->
+  <main class="chat-container">
+
+    <!-- WELCOME -->
+    @if (messages.length === 0) {
+
+      <section class="welcome">
+
+        <div class="welcome-icon">
+          🤖
+        </div>
+
+        <h2>
+          Merhaba {{ userName }} 👋
+        </h2>
+
+        <p>
+          Bugün sana nasıl yardımcı olabilirim?
+        </p>
+<div class="ai-quiz-cta">
+
+  <div class="ai-quiz-cta-icon">
+    ✨
+  </div>
+
+  <div class="ai-quiz-cta-content">
+
+    <span class="ai-quiz-cta-badge">
+      AI DESTEKLİ
+    </span>
+
+    <h3>
+      Kendi Quizini Oluştur
+    </h3>
+
+    <p>
+      İstediğin konuyu seç, zorluk seviyesini belirle
+      ve AI sana özel sorular hazırlasın.
+    </p>
+
+  </div>
+
+  <button
+    class="ai-quiz-cta-button"
+    (click)="goToAiQuiz()">
+
+    <span>Quiz Oluştur</span>
+    <span class="arrow">→</span>
+
+  </button>
+
+</div>
+        <div class="suggestions">
+
+          <button
+            (click)="useSuggestion(
+              'Binary Search algoritmasını basitçe anlat.'
+            )">
+
+            🔍 Binary Search'i anlat
+
+          </button>
+
+          <button
+            (click)="useSuggestion(
+              'Insertion Sort algoritmasını örnekle anlat.'
+            )">
+
+            📊 Insertion Sort'u anlat
+
+          </button>
+
+          <button
+            (click)="useSuggestion(
+              'Veri yapıları nedir? Basitçe açıkla.'
+            )">
+
+            🧠 Veri yapılarını anlat
+
+          </button>
+
+        </div>
+
+      </section>
+
+    }
+
+
+    <!-- MESSAGES -->
+    <section class="messages">
+
+      @for (
+        msg of messages;
+        track $index
+      ) {
+
+        <div
+          class="message-row"
+          [class.user-row]="msg.role === 'user'"
+          [class.ai-row]="msg.role === 'ai'">
+
+          <div class="message-avatar">
+
+            @if (msg.role === 'user') {
+              👤
+            } @else {
+              🤖
+            }
+
+          </div>
+
+
+          <div class="message-bubble">
+
+            <span class="message-name">
+
+              @if (msg.role === 'user') {
+                Sen
+              } @else {
+                Intern AI
+              }
+
+            </span>
+
+
+         <div
+  class="message-text"
+  [innerHTML]="formatMessage(msg.text)">
+</div>
+
+          </div>
+
+        </div>
+
+      }
+
+
+      <!-- LOADING -->
+      @if (isLoading) {
+
+        <div class="message-row ai-row">
+
+          <div class="message-avatar">
+            🤖
+          </div>
+
+          <div class="message-bubble">
+
+            <span class="message-name">
+              Intern AI
+            </span>
+
+            <div class="typing">
+
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      }
+
+    </section>
+
+  </main>
+
+
+  <!-- INPUT -->
+  <div class="input-area">
+
+    <div class="input-wrapper">
+
+      <textarea
+        [(ngModel)]="message"
+        (keydown)="handleEnter($event)"
+        placeholder="Intern AI'a bir şey sor..."
+        rows="1">
+      </textarea>
+
+
+      <button
+        class="send-button"
+        (click)="sendMessage()"
+        [disabled]="
+          !message.trim() ||
+          isLoading
+        ">
+
+        ↑
+
+      </button>
+
+    </div>
+
+
+    <p class="input-hint">
+
+      Enter ile gönder •
+      Shift + Enter ile yeni satır
+
+    </p>
+
+  </div>
+
+</div>

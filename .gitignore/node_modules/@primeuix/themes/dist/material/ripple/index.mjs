@@ -1,0 +1,1 @@
+var a={background:"light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.3))"},css="",r={root:a,css:""};export{css,r as default,a as root};

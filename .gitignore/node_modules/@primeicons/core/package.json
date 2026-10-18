@@ -1,0 +1,72 @@
+{
+  "name": "@primeicons/core",
+  "version": "8.0.0",
+  "author": "PrimeTek Informatics",
+  "homepage": "https://primeicons.dev/",
+  "description": "Core utilities and types for PrimeIcons",
+  "keywords": [
+    "primeicons",
+    "icons",
+    "icon-library",
+    "svg-icons",
+    "typescript"
+  ],
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://support.primeui.dev"
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/lib/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.mjs"
+    },
+    "./package.json": "./package.json",
+    "./types": {
+      "types": "./dist/types.d.ts"
+    },
+    "./utils": {
+      "types": "./dist/lib/utils.d.ts",
+      "import": "./dist/esm/utils.mjs",
+      "require": "./dist/cjs/utils.js",
+      "default": "./dist/esm/utils.mjs"
+    },
+    "./loaders": {
+      "types": "./dist/lib/loaders.d.ts",
+      "import": "./dist/esm/loaders.mjs",
+      "require": "./dist/cjs/loaders.js",
+      "default": "./dist/esm/loaders.mjs"
+    },
+    "./*": {
+      "types": "./dist/lib/icons/*.d.ts",
+      "import": "./dist/esm/icons/*.mjs",
+      "require": "./dist/cjs/icons/*.js",
+      "default": "./dist/esm/icons/*.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "dependencies": {
+    "@primeuix/utils": "^0.8.0"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
+    "build:dev": "cross-env NODE_ENV=development INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:dev:package",
+    "build:package": "pnpm run build:prebuild && tsup",
+    "build:dev:package": "pnpm run build:prebuild && tsup --watch",
+    "build:prebuild": "node ./scripts/prebuild.mjs",
+    "type:check": "tsc --noEmit",
+    "dev:link": "pnpm link --global && npm link"
+  }
+}

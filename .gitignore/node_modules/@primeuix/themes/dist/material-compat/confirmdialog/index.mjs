@@ -1,0 +1,1 @@
+var o={size:"2rem",color:"{overlay.modal.color}"},e={gap:"1rem"},css="",t={color:"{content.color}",fontWeight:"{typography.font.weight}",fontSize:"{typography.font.size}"},r={icon:o,content:e,css:"",message:t};export{e as content,css,r as default,o as icon,t as message};

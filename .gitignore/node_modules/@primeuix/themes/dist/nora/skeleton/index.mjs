@@ -1,0 +1,1 @@
+var r={borderRadius:"{content.border.radius}",background:"light-dark({surface.300}, rgba(255, 255, 255, 0.1))",animationBackground:"light-dark(rgba(255,255,255,0.4), rgba(255, 255, 255, 0.04))"},a={root:r};export{a as default,r as root};

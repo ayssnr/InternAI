@@ -1,0 +1,1 @@
+var r={gap:"0.5rem"},t={width:"2.25rem",sm:{width:"1.75rem"},lg:{width:"2.625rem"}},e={root:r,input:t};export{e as default,t as input,r as root};

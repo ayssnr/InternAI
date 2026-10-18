@@ -1,0 +1,803 @@
+
+<div class="statistics-page">
+
+  <!-- HEADER -->
+
+  <header class="statistics-header">
+
+    <a
+      routerLink="/dashboard"
+      class="back-button"
+    >
+      ← Ana Sayfa
+    </a>
+
+    <div class="header-content">
+
+      <div class="header-icon">
+        📊
+      </div>
+
+      <div>
+
+        <span class="header-label">
+          PERFORMANS ANALİZİ
+        </span>
+
+        <h1>
+          İstatistiklerin
+        </h1>
+
+        <p>
+          Quiz performansını detaylı şekilde incele.
+        </p>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- LOADING -->
+
+  <div
+    class="loading"
+    *ngIf="loading"
+  >
+
+    <div class="loading-icon">
+      📊
+    </div>
+
+    <h2>
+      İstatistiklerin hazırlanıyor...
+    </h2>
+
+    <p>
+      Quiz sonuçların hesaplanıyor.
+    </p>
+
+  </div>
+
+
+  <!-- ERROR -->
+
+  <div
+    class="error-card"
+    *ngIf="!loading && error"
+  >
+
+    <div class="error-icon">
+      ⚠️
+    </div>
+
+    <h2>
+      İstatistikler yüklenemedi
+    </h2>
+
+    <p>
+      Veriler alınırken bir sorun oluştu.
+    </p>
+
+    <button
+      class="retry-button"
+      (click)="loadStatistics()"
+    >
+      Tekrar Dene
+    </button>
+
+  </div>
+
+
+  <!-- CONTENT -->
+
+  <main
+    class="statistics-content"
+    *ngIf="!loading && !error && stats"
+  >
+
+
+    <!-- ================================================= -->
+    <!-- GENEL İSTATİSTİKLER -->
+    <!-- ================================================= -->
+
+    <section class="summary-grid">
+
+      <div class="summary-card">
+
+        <div class="summary-icon purple">
+          📝
+        </div>
+
+        <div>
+
+          <span>
+            TOPLAM QUIZ
+          </span>
+
+          <strong>
+            {{ stats.totalQuizzes }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <div class="summary-icon blue">
+          ❓
+        </div>
+
+        <div>
+
+          <span>
+            CEVAPLANAN SORU
+          </span>
+
+          <strong>
+            {{ stats.totalQuestions }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <div class="summary-icon green">
+          ✓
+        </div>
+
+        <div>
+
+          <span>
+            DOĞRU CEVAP
+          </span>
+
+          <strong>
+            {{ stats.totalCorrect }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <div class="summary-icon orange">
+          🎯
+        </div>
+
+        <div>
+
+          <span>
+            BAŞARI ORANI
+          </span>
+
+          <strong>
+            %{{ stats.successRate }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- 1. SATIR -->
+    <!-- ================================================= -->
+
+    <section class="charts-grid">
+
+
+      <!-- PUAN DAĞILIMI -->
+
+      <div class="chart-card">
+
+        <div class="chart-header">
+
+          <div>
+
+            <span>
+              PUAN ANALİZİ
+            </span>
+
+            <h2>
+              Quiz Puan Dağılımı
+            </h2>
+
+          </div>
+
+          <div class="chart-icon">
+            📈
+          </div>
+
+        </div>
+
+
+        <div class="score-distribution">
+
+          <div class="distribution-row">
+
+            <span>
+              0–20%
+            </span>
+
+            <div class="distribution-bar">
+
+              <div
+                [style.width.%]="
+                  stats.totalQuizzes > 0
+                    ? (scoreDistribution.veryLow / stats.totalQuizzes) * 100
+                    : 0
+                "
+              ></div>
+
+            </div>
+
+            <strong>
+              {{ scoreDistribution.veryLow }}
+            </strong>
+
+          </div>
+
+
+          <div class="distribution-row">
+
+            <span>
+              21–40%
+            </span>
+
+            <div class="distribution-bar">
+
+              <div
+                [style.width.%]="
+                  stats.totalQuizzes > 0
+                    ? (scoreDistribution.low / stats.totalQuizzes) * 100
+                    : 0
+                "
+              ></div>
+
+            </div>
+
+            <strong>
+              {{ scoreDistribution.low }}
+            </strong>
+
+          </div>
+
+
+          <div class="distribution-row">
+
+            <span>
+              41–60%
+            </span>
+
+            <div class="distribution-bar">
+
+              <div
+                [style.width.%]="
+                  stats.totalQuizzes > 0
+                    ? (scoreDistribution.medium / stats.totalQuizzes) * 100
+                    : 0
+                "
+              ></div>
+
+            </div>
+
+            <strong>
+              {{ scoreDistribution.medium }}
+            </strong>
+
+          </div>
+
+
+          <div class="distribution-row">
+
+            <span>
+              61–80%
+            </span>
+
+            <div class="distribution-bar">
+
+              <div
+                [style.width.%]="
+                  stats.totalQuizzes > 0
+                    ? (scoreDistribution.good / stats.totalQuizzes) * 100
+                    : 0
+                "
+              ></div>
+
+            </div>
+
+            <strong>
+              {{ scoreDistribution.good }}
+            </strong>
+
+          </div>
+
+
+          <div class="distribution-row">
+
+            <span>
+              81–100%
+            </span>
+
+            <div class="distribution-bar">
+
+              <div
+                [style.width.%]="
+                  stats.totalQuizzes > 0
+                    ? (scoreDistribution.excellent / stats.totalQuizzes) * 100
+                    : 0
+                "
+              ></div>
+
+            </div>
+
+            <strong>
+              {{ scoreDistribution.excellent }}
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- EN İYİ 5 QUIZ -->
+
+      <div class="chart-card">
+
+        <div class="chart-header">
+
+          <div>
+
+            <span>
+              BAŞARI LİDERLERİ
+            </span>
+
+            <h2>
+              En İyi 5 Quiz
+            </h2>
+
+          </div>
+
+          <div class="chart-icon">
+            🏆
+          </div>
+
+        </div>
+
+
+        <div class="best-quiz-list">
+
+          <div
+            class="best-quiz"
+            *ngFor="
+              let quiz of bestQuizzes;
+              let i = index
+            "
+          >
+
+            <div class="rank">
+              {{ i + 1 }}
+            </div>
+
+            <div class="best-quiz-info">
+
+              <strong>
+                {{ quiz.quizTitle || 'Quiz' }}
+              </strong>
+
+              <span>
+                {{ quiz.score }} /
+                {{ quiz.totalQuestions }} doğru
+              </span>
+
+            </div>
+
+            <div
+              class="best-score"
+              [ngClass]="
+                getScoreClass(quiz)
+              "
+            >
+              {{ getScorePercentage(quiz) }}%
+            </div>
+
+          </div>
+
+
+          <div
+            class="empty-state"
+            *ngIf="bestQuizzes.length === 0"
+          >
+            Henüz quiz sonucu bulunmuyor.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- 2. SATIR -->
+    <!-- ================================================= -->
+
+    <section class="charts-grid">
+
+
+      <!-- ZAMAN İÇİNDE BAŞARI -->
+
+      <div class="chart-card">
+
+        <div class="chart-header">
+
+          <div>
+
+            <span>
+              ÖĞRENME EĞRİSİ
+            </span>
+
+            <h2>
+              Zaman İçinde Başarı Eğilimi
+            </h2>
+
+          </div>
+
+          <div class="chart-icon">
+            📈
+          </div>
+
+        </div>
+
+
+        <div class="line-chart" *ngIf="performanceHistory.length; else noPerformance">
+
+          <svg class="line-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <polyline [attr.points]="getPerformanceLine()"></polyline>
+          </svg>
+
+          <div
+            class="line-point"
+            *ngFor="
+              let item of performanceHistory;
+              let i = index
+            "
+            [style.left.%]="
+              performanceHistory.length > 1
+                ? (i / (performanceHistory.length - 1)) * 100
+                : 50
+            "
+            [style.bottom.%]="item.percentage"
+          >
+
+            <span>{{ item.percentage }}%</span>
+
+          </div>
+
+        </div>
+
+        <ng-template #noPerformance><div class="empty-state chart-empty">Öğrenme eğrisi için henüz quiz sonucu bulunmuyor.</div></ng-template>
+
+
+        <div class="chart-axis">
+
+          <span>
+            İlk Quiz
+          </span>
+
+          <span>
+            Son Quiz
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- RADAR BENZERİ KONU YETKİNLİĞİ -->
+
+      <div class="chart-card">
+
+        <div class="chart-header">
+
+          <div>
+
+            <span>
+              KONU ANALİZİ
+            </span>
+
+            <h2>
+              Konu Bazlı Yetkinlik
+            </h2>
+
+          </div>
+
+          <div class="chart-icon">
+            🕸️
+          </div>
+
+        </div>
+
+
+        <div class="topic-performance">
+
+          <div
+            class="topic-performance-item"
+            *ngFor="
+              let topic of topicPerformance
+            "
+          >
+
+            <div class="topic-name">
+
+              <strong>
+                {{ topic.topicName }}
+              </strong>
+
+              <span>
+                {{ topic.percentage }}%
+              </span>
+
+            </div>
+
+
+            <div class="topic-bar">
+
+              <div
+                [style.width.%]="
+                  topic.percentage
+                "
+              ></div>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="empty-state"
+            *ngIf="topicPerformance.length === 0"
+          >
+            Henüz konu verisi bulunmuyor.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- 3. SATIR -->
+    <!-- ================================================= -->
+
+    <section class="charts-grid">
+
+
+      <!-- AKTİVİTE ISI HARİTASI -->
+
+      <div class="chart-card">
+
+        <div class="chart-header">
+
+          <div>
+
+            <span>
+              ÇALIŞMA ALIŞKANLIĞI
+            </span>
+
+            <h2>
+              Aktivite Isı Haritası
+            </h2>
+
+          </div>
+
+          <div class="chart-icon">
+            🔥
+          </div>
+
+        </div>
+
+
+        <div class="heatmap-month">{{ currentHeatmapMonth }}</div>
+
+        <div class="heatmap">
+
+          <div
+            class="heat-cell"
+            *ngFor="
+              let day of activityHeatmap
+            "
+            [ngClass]="getHeatLevel(day.count)"
+            [attr.title]="
+              day.date + ' · ' + day.count + ' quiz'
+            "
+          >
+
+            <span>
+              {{ day.label }}
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="heatmap-info">
+
+          Son 30 gün · <span class="heat-legend"><i class="level-0"></i><i class="level-1"></i><i class="level-2"></i><i class="level-3"></i><i class="level-4"></i></span> Daha yoğun
+
+        </div>
+
+      </div>
+
+
+      <!-- HIZ ANALİZİ -->
+
+      <div class="chart-card">
+
+        <div class="chart-header">
+
+          <div>
+
+            <span>
+              HIZ ANALİZİ
+            </span>
+
+            <h2>
+              Soru Başına Ortalama Süre
+            </h2>
+
+          </div>
+
+          <div class="chart-icon">
+            ⚡
+          </div>
+
+        </div>
+
+
+        <div class="speed-chart" *ngIf="questionTimeData.length; else noTimeData">
+
+          <div
+            class="speed-column"
+            *ngFor="
+              let quiz of questionTimeData
+            "
+          >
+
+            <div
+              class="speed-bar"
+              [style.height.px]="
+                quiz.seconds * 2
+              "
+            ></div>
+
+            <strong>{{ quiz.seconds }} sn</strong>
+            <span class="speed-topic" [attr.title]="quiz.topicName">{{ quiz.topicName }}</span>
+
+          </div>
+
+        </div>
+
+        <ng-template #noTimeData>
+          <div class="empty-state chart-empty time-empty"><span>⏱️</span><strong>Henüz süre verisi yok</strong><p>Quiz çözüm süresi kaydedilmeye başladığında soru başına ortalama süre burada gösterilecek.</p></div>
+        </ng-template>
+
+
+        <p class="chart-note" *ngIf="questionTimeData.length">
+
+      
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SON 5 QUIZ -->
+    <!-- ================================================= -->
+
+    <section class="recent-section">
+
+      <div class="section-title">
+
+        <span>
+          SON AKTİVİTELER
+        </span>
+
+        <h2>
+          Son 5 Quiz
+        </h2>
+
+      </div>
+
+
+      <div class="quiz-list">
+
+        <div
+          class="quiz-item"
+          *ngFor="
+            let quiz of recentQuizzes;
+            let i = index
+          "
+        >
+
+          <div class="quiz-number">
+            {{ i + 1 }}
+          </div>
+
+
+          <div class="quiz-info">
+
+            <strong>
+              {{ quiz.quizTitle || 'Quiz' }}
+            </strong>
+
+            <span>
+              {{ quiz.lastQuizDate | date:'dd.MM.yyyy HH:mm' }}
+            </span>
+
+          </div>
+
+
+          <div class="quiz-score">
+
+            <strong>
+              {{ quiz.score }} /
+              {{ quiz.totalQuestions }}
+            </strong>
+
+            <span>
+              doğru
+            </span>
+
+          </div>
+
+
+          <div
+            class="score-badge"
+            [ngClass]="
+              getScoreClass(quiz)
+            "
+          >
+
+            {{ getScorePercentage(quiz) }}%
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="empty-state"
+          *ngIf="recentQuizzes.length === 0"
+        >
+          Henüz quiz çözülmemiş.
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+```

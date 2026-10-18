@@ -1,0 +1,162 @@
+<div class="student-assignments-page">
+
+  <!-- Üst kısım -->
+  <div class="student-assignments-top">
+    <button
+      class="student-assignments-back"
+      (click)="goBack()">
+      ← Geri
+    </button>
+  </div>
+
+  <!-- Başlık -->
+  <div class="student-assignments-header">
+
+    <div class="student-assignments-header-left">
+
+      <div class="student-assignments-icon">
+        📋
+      </div>
+
+      <div>
+        <h1>Ödevlerim</h1>
+        <p>
+          Sana atanan görevleri buradan takip edebilirsin.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="student-assignments-total">
+
+      <span>
+        {{ assignments.length }}
+      </span>
+
+      <small>
+        Toplam Ödev
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <!-- Ödev yoksa -->
+  <div
+    *ngIf="assignments.length === 0"
+    class="student-assignments-empty">
+
+    <div class="student-assignments-empty-icon">
+      🎉
+    </div>
+
+    <h2>
+      Şimdilik ödevin yok!
+    </h2>
+
+    <p>
+      Yeni bir ödev atandığında burada görebileceksin.
+    </p>
+
+  </div>
+
+
+  <!-- Ödevler -->
+  <div
+    *ngIf="assignments.length > 0"
+    class="student-assignments-grid">
+
+    <div
+      *ngFor="let assignment of assignments"
+      class="student-assignments-card">
+
+
+      <!-- Kart üst kısmı -->
+      <div class="student-assignments-card-header">
+
+        <div class="student-assignments-topic">
+          📚 {{ assignment.topicName }}
+        </div>
+
+        <span
+          class="student-assignments-status"
+          [class.student-assignments-status-completed]="assignment.isCompleted"
+          [class.student-assignments-status-pending]="!assignment.isCompleted">
+
+          {{
+            assignment.isCompleted
+              ? '✓ Tamamlandı'
+              : '⏳ Bekliyor'
+          }}
+
+        </span>
+
+      </div>
+
+
+      <!-- Ödev başlığı -->
+      <h2 class="student-assignments-title">
+        {{ assignment.title }}
+      </h2>
+
+
+      <!-- Açıklama -->
+      <p class="student-assignments-description">
+
+        {{
+          assignment.description ||
+          'Bu ödev için açıklama bulunmuyor.'
+        }}
+
+      </p>
+
+
+      <!-- Son teslim -->
+      <div class="student-assignments-due">
+
+        <div class="student-assignments-date-icon">
+          📅
+        </div>
+
+        <div class="student-assignments-due-content">
+
+          <span>
+            Son Teslim Tarihi
+          </span>
+
+          <strong>
+            {{ assignment.dueDate | date:'dd MMMM yyyy, HH:mm' }}
+          </strong>
+
+        </div>
+
+      </div>
+      <div class="student-assignments-complete">
+
+  <label class="student-assignments-checkbox">
+
+    <input
+      type="checkbox"
+      [checked]="assignment.isCompleted"
+      [disabled]="assignment.isCompleted"
+      (change)="completeAssignment(assignment)"
+    />
+
+    <span class="student-assignments-check-text">
+      {{
+        assignment.isCompleted
+          ? 'Ödev tamamlandı'
+          : 'Ödevi tamamladım'
+      }}
+    </span>
+
+  </label>
+
+</div>
+
+    </div>
+
+  </div>
+
+</div>

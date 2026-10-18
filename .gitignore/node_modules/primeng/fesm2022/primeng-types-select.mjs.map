@@ -1,0 +1,1 @@
+{"version":3,"file":"primeng-types-select.mjs","sources":["../../src/types/select/primeng-types-select.ts"],"sourcesContent":["/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './public_api';\n"],"names":[],"mappings":"AAAA;;AAEG"}

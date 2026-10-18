@@ -1,0 +1,1 @@
+var r={color:"{content.color}",borderRadius:"{content.border.radius}",gap:"0.5rem",padding:"1rem",background:"light-dark({surface.100}, {surface.800})",borderColor:"light-dark({surface.100}, {surface.800})"},css="",o={root:r,css:""};export{css,o as default,r as root};

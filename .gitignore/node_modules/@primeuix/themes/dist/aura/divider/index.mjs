@@ -1,0 +1,1 @@
+var r={borderColor:"{content.border.color}"},o={background:"{content.background}",color:"{text.color}"},n={margin:"0.875rem 0",padding:"0 0.875rem",content:{padding:"0 0.375rem"}},e={margin:"0 0.875rem",padding:"0.375rem 0",content:{padding:"0.375rem 0"}},t={root:r,content:o,horizontal:n,vertical:e};export{o as content,t as default,n as horizontal,r as root,e as vertical};

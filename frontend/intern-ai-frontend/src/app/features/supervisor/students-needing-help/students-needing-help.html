@@ -1,0 +1,102 @@
+<div class="help-page">
+
+  <button
+    class="back-button"
+    (click)="goBack()">
+    ← Geri
+  </button>
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">
+        ÖĞRENCİ TAKİBİ
+      </span>
+
+      <h1>
+        ⚠️ Desteğe İhtiyaç Duyan Öğrenciler
+      </h1>
+
+      <p>
+        Başarı oranı %50'nin altında olan öğrenciler.
+      </p>
+    </div>
+
+    <div class="student-count">
+      {{ students.length }}
+      <span>Öğrenci</span>
+    </div>
+
+  </div>
+
+
+  <div
+    *ngIf="students.length === 0"
+    class="empty-state">
+
+    <div class="empty-icon">
+      🎉
+    </div>
+
+    <h2>
+      Harika!
+    </h2>
+
+    <p>
+      %50'nin altında başarı oranına sahip öğrenci bulunmuyor.
+    </p>
+
+  </div>
+
+
+  <div
+    *ngIf="students.length > 0"
+    class="students-list">
+
+    <div
+      class="student-card"
+      *ngFor="let student of students; let i = index">
+
+      <div class="rank">
+        {{ i + 1 }}
+      </div>
+
+      <div class="avatar">
+        {{ getInitials(student.name) }}
+      </div>
+
+      <div class="student-info">
+
+        <strong>
+          {{ student.name }}
+        </strong>
+
+        <span>
+          {{ student.quizCount }} quiz tamamladı
+        </span>
+
+      </div>
+
+      <div class="score-section">
+
+        <strong>
+          %{{ student.averageScore }}
+        </strong>
+
+        <div class="score-bar">
+          <div
+            [style.width.%]="student.averageScore">
+          </div>
+        </div>
+
+        <span>
+          Desteğe ihtiyaç var
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

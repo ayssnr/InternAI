@@ -1,0 +1,202 @@
+<div class="achievements-page">
+
+  <!-- HEADER -->
+
+  <div class="achievements-header">
+
+    <a routerLink="/dashboard" class="back-button">← Ana Sayfa</a>
+
+    <div class="header-content">
+
+      <div class="header-icon">
+        🏆
+      </div>
+
+      <div>
+
+        <span class="header-label">
+          ÖĞRENME YOLCULUĞUN
+        </span>
+
+        <h1>
+          Başarıların
+        </h1>
+
+        <p>
+          Öğrenmeye devam ettikçe yeni rozetlerin kilidini aç.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- SUMMARY -->
+
+  <section class="achievement-summary">
+
+    <div class="summary-icon">
+      🏆
+    </div>
+
+    <div class="summary-content">
+
+      <span>
+        TAMAMLANAN BAŞARILAR
+      </span>
+
+      <strong>
+        {{ unlockedCount }} / {{ totalCount }}
+      </strong>
+
+      <div class="summary-progress">
+
+        <div
+          class="summary-progress-fill"
+          [style.width.%]="completionPercentage"
+        ></div>
+
+      </div>
+
+    </div>
+
+    <div class="summary-percentage">
+
+      %{{ completionPercentage }}
+
+    </div>
+
+  </section>
+
+
+  <!-- ACHIEVEMENTS -->
+
+  <section class="achievements-section">
+
+    <div class="section-title">
+
+      <div>
+
+        <span>
+          ROZETLER
+        </span>
+
+        <h2>
+          Başarı Koleksiyonun
+        </h2>
+
+      </div>
+
+      <strong>
+        {{ unlockedCount }} kazanıldı
+      </strong>
+
+    </div>
+
+    <div class="achievement-filters" aria-label="Başarı filtreleri">
+      <button type="button" [class.active]="activeFilter === 'all'" (click)="setFilter('all')">Tümü <span>{{ totalCount }}</span></button>
+      <button type="button" [class.active]="activeFilter === 'unlocked'" (click)="setFilter('unlocked')">Kilidi Açılanlar <span>{{ unlockedCount }}</span></button>
+      <button type="button" [class.active]="activeFilter === 'locked'" (click)="setFilter('locked')">Kilitli <span>{{ totalCount - unlockedCount }}</span></button>
+    </div>
+
+
+    <div class="achievement-grid">
+
+      <div
+        class="achievement-card"
+        *ngFor="let achievement of filteredAchievements"
+        [class.unlocked]="achievement.unlocked"
+        [class.locked]="!achievement.unlocked"
+      >
+
+        <!-- ICON -->
+
+        <div class="achievement-icon">
+
+          {{ achievement.icon }}
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="achievement-content">
+
+          <h3>
+            {{ achievement.title }}
+          </h3>
+
+          <p>
+            {{ achievement.description }}
+          </p>
+
+
+          <!-- PROGRESS -->
+
+          <div
+            *ngIf="!achievement.unlocked"
+            class="achievement-progress"
+          >
+
+            <div class="achievement-progress-info">
+
+              <span>
+                İlerleme
+              </span>
+
+              <strong>
+                {{ achievement.current }} /
+                {{ achievement.target }}
+              </strong>
+
+            </div>
+
+            <div class="achievement-progress-bar">
+
+              <div
+                class="achievement-progress-fill"
+               [style.width.%]="getProgress(achievement)"
+                
+              ></div>
+
+            </div>
+
+          </div>
+
+
+          <!-- UNLOCKED -->
+
+          <div
+            *ngIf="achievement.unlocked"
+            class="unlocked-label"
+          >
+
+            ✓ Başarıldı
+
+          </div>
+
+        </div>
+
+
+        <!-- LOCK -->
+
+        <div
+          class="achievement-status"
+          [class.status-unlocked]="achievement.unlocked"
+        >
+
+          {{ achievement.unlocked ? '✓' : '🔒' }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="filter-empty" *ngIf="filteredAchievements.length === 0">Bu kategoride gösterilecek başarı bulunmuyor.</div>
+
+  </section>
+
+</div>

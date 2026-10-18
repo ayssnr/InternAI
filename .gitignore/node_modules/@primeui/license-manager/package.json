@@ -1,0 +1,58 @@
+{
+  "name": "@primeui/license-manager",
+  "version": "1.0.0",
+  "author": "PrimeTek Informatics",
+  "description": "Offline license verifier for PrimeUI and PrimeUI PRO",
+  "keywords": [
+    "license",
+    "ed25519",
+    "primeng",
+    "primereact",
+    "primevue",
+    "primeui"
+  ],
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://support.primeui.dev"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "dependencies": {
+    "@noble/ed25519": "2.3.0",
+    "@noble/hashes": "2.2.0"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
+    "build:dev": "cross-env NODE_ENV=development INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:dev:package",
+    "build:package": "tsup && pnpm run test",
+    "build:dev:package": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:coverage:open": "vitest run --coverage && open coverage/index.html",
+    "test:perf": "vitest run --config vitest.perf.config.ts",
+    "test:bench": "vitest bench --run --config vitest.perf.config.ts",
+    "test:all": "pnpm run test && pnpm run test:coverage && pnpm run test:perf && pnpm run test:bench",
+    "verify": "pnpm run type:check && pnpm run test:all",
+    "type:check": "tsc --noEmit",
+    "dev:link": "pnpm link --global && npm link",
+    "keygen": "node scripts/generate-keys.mjs"
+  }
+}

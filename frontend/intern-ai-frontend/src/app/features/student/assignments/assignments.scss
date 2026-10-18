@@ -1,0 +1,604 @@
+.student-assignments-page {
+  min-height: 100vh;
+  padding: 35px 45px;
+  background: #f7f8fc;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   GERİ BUTONU
+========================= */
+
+.student-assignments-top {
+  margin-bottom: 20px;
+}
+
+.student-assignments-back {
+  border: none;
+  background: #ffffff;
+  color: #555;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.student-assignments-back:hover {
+  transform: translateX(-3px);
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   BAŞLIK
+========================= */
+
+.student-assignments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.student-assignments-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+/* Başlık ikonu */
+
+.student-assignments-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 17px;
+
+  background: linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2
+  );
+
+  font-size: 28px;
+
+  box-shadow:
+    0 8px 20px rgba(
+      102,
+      126,
+      234,
+      0.25
+    );
+}
+
+
+/* Başlık */
+
+.student-assignments-header h1 {
+  margin: 0;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #252733;
+}
+
+.student-assignments-header p {
+  margin: 6px 0 0;
+
+  color: #8a8d9b;
+  font-size: 14px;
+}
+
+
+/* =========================
+   TOPLAM ÖDEV
+========================= */
+
+.student-assignments-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 110px;
+
+  padding: 14px 20px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 5px 20px rgba(
+      0,
+      0,
+      0,
+      0.05
+    );
+}
+
+.student-assignments-total span {
+  font-size: 26px;
+  font-weight: 700;
+
+  color: #667eea;
+}
+
+.student-assignments-total small {
+  margin-top: 3px;
+
+  color: #888;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   ÖDEV GRID
+========================= */
+
+.student-assignments-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(330px, 1fr)
+    );
+
+  gap: 22px;
+}
+
+
+/* =========================
+   ÖDEV KARTI
+========================= */
+
+.student-assignments-card {
+  background: #ffffff;
+
+  border-radius: 20px;
+
+  padding: 24px;
+
+  border: 1px solid #f0f1f5;
+
+  box-shadow:
+    0 7px 25px rgba(
+      0,
+      0,
+      0,
+      0.06
+    );
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  box-sizing: border-box;
+}
+
+.student-assignments-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 12px 30px rgba(
+      0,
+      0,
+      0,
+      0.09
+    );
+}
+
+
+/* =========================
+   KART HEADER
+========================= */
+
+.student-assignments-card-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+
+/* Konu */
+
+.student-assignments-topic {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 7px 11px;
+
+  border-radius: 10px;
+
+  background: #f0f2ff;
+
+  color: #667eea;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================
+   DURUM
+========================= */
+
+.student-assignments-status {
+  padding: 6px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* Bekliyor */
+
+.student-assignments-status-pending {
+  background: #fff4d6;
+  color: #a36b00;
+}
+
+
+/* Tamamlandı */
+
+.student-assignments-status-completed {
+  background: #e1f7ec;
+  color: #16834d;
+}
+
+
+/* =========================
+   ÖDEV BAŞLIĞI
+========================= */
+
+.student-assignments-title {
+  margin: 0 0 12px;
+
+  color: #292b36;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   AÇIKLAMA
+========================= */
+
+.student-assignments-description {
+  color: #777b89;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  min-height: 45px;
+
+  margin: 0 0 22px;
+}
+
+
+/* =========================
+   TARİH
+========================= */
+
+.student-assignments-due {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding-top: 16px;
+
+  border-top:
+    1px solid #eeeeF2;
+}
+
+
+/* Takvim ikonu */
+
+.student-assignments-date-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #f5f5ff;
+
+  font-size: 18px;
+
+  flex-shrink: 0;
+}
+
+
+/* Tarih yazıları */
+
+.student-assignments-due-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.student-assignments-due-content span {
+  font-size: 11px;
+
+  color: #999;
+}
+
+.student-assignments-due-content strong {
+  font-size: 13px;
+
+  color: #444754;
+}
+
+
+/* =========================
+   ÖDEV YOK
+========================= */
+
+.student-assignments-empty {
+  background: #ffffff;
+
+  border-radius: 22px;
+
+  padding: 70px 30px;
+
+  text-align: center;
+
+  box-shadow:
+    0 7px 25px rgba(
+      0,
+      0,
+      0,
+      0.05
+    );
+}
+
+.student-assignments-empty-icon {
+  font-size: 55px;
+
+  margin-bottom: 15px;
+}
+
+.student-assignments-empty h2 {
+  margin: 0 0 8px;
+
+  color: #333;
+
+  font-size: 22px;
+}
+
+.student-assignments-empty p {
+  margin: 0;
+
+  color: #888;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   MOBİL
+========================= */
+
+@media (max-width: 700px) {
+
+  .student-assignments-page {
+    padding: 25px 18px;
+  }
+
+
+  .student-assignments-header {
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+
+  .student-assignments-header h1 {
+    font-size: 25px;
+  }
+
+
+  .student-assignments-total {
+    min-width: 80px;
+
+    padding:
+      12px 15px;
+  }
+
+
+  .student-assignments-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .student-assignments-card-header {
+    align-items: flex-start;
+  }
+
+}
+.student-assignments-complete {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #eeeeF2;
+}
+
+.student-assignments-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #555;
+
+  user-select: none;
+}
+
+.student-assignments-checkbox input {
+  width: 19px;
+  height: 19px;
+
+  cursor: pointer;
+
+  accent-color: #667eea;
+}
+
+.student-assignments-checkbox input:checked {
+  accent-color: #22c55e;
+}
+
+.student-assignments-checkbox input:disabled {
+  cursor: default;
+}
+
+.student-assignments-check-text {
+  transition: 0.2s ease;
+}
+
+.student-assignments-checkbox input:checked
+  + .student-assignments-check-text {
+  color: #16834d;
+}
+/* =========================
+   DARK MODE
+========================= */
+
+:host-context(body.dark-mode) .student-assignments-page {
+  background: #0f172a;
+}
+
+:host-context(body.dark-mode) .student-assignments-back {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+:host-context(body.dark-mode) .student-assignments-header h1 {
+  color: #f8fafc;
+}
+
+:host-context(body.dark-mode) .student-assignments-header p {
+  color: #94a3b8;
+}
+
+:host-context(body.dark-mode) .student-assignments-total {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+:host-context(body.dark-mode) .student-assignments-total small {
+  color: #94a3b8;
+}
+
+:host-context(body.dark-mode) .student-assignments-card {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.25);
+}
+
+:host-context(body.dark-mode) .student-assignments-topic {
+  background: #292d52;
+  color: #a5b4fc;
+}
+
+:host-context(body.dark-mode) .student-assignments-title {
+  color: #f8fafc;
+}
+
+:host-context(body.dark-mode) .student-assignments-description {
+  color: #94a3b8;
+}
+
+:host-context(body.dark-mode) .student-assignments-due {
+  border-top-color: #334155;
+}
+
+:host-context(body.dark-mode) .student-assignments-date-icon {
+  background: #273449;
+}
+
+:host-context(body.dark-mode) .student-assignments-due-content span {
+  color: #94a3b8;
+}
+
+:host-context(body.dark-mode) .student-assignments-due-content strong {
+  color: #cbd5e1;
+}
+
+:host-context(body.dark-mode) .student-assignments-complete {
+  border-top-color: #334155;
+}
+
+:host-context(body.dark-mode) .student-assignments-checkbox {
+  color: #cbd5e1;
+}
+
+:host-context(body.dark-mode) .student-assignments-status-pending {
+  background: #3a2f16;
+  color: #fbbf24;
+}
+
+:host-context(body.dark-mode) .student-assignments-status-completed {
+  background: #123524;
+  color: #4ade80;
+}
+
+:host-context(body.dark-mode) .student-assignments-checkbox input:checked
+  + .student-assignments-check-text {
+  color: #4ade80;
+}
+
+:host-context(body.dark-mode) .student-assignments-empty {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+:host-context(body.dark-mode) .student-assignments-empty h2 {
+  color: #f8fafc;
+}
+
+:host-context(body.dark-mode) .student-assignments-empty p {
+  color: #94a3b8;
+}

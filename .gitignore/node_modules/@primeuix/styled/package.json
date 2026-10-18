@@ -1,0 +1,61 @@
+{
+  "name": "@primeuix/styled",
+  "version": "1.0.0",
+  "author": "PrimeTek Informatics",
+  "description": "Styled utilities for PrimeUI Libraries",
+  "keywords": [
+    "styled",
+    "css",
+    "style utilities",
+    "primeng",
+    "primereact",
+    "primevue",
+    "primeuix"
+  ],
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://support.primeui.dev"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "dependencies": {
+    "@primeui/license-manager": "^1.0.0",
+    "@primeuix/utils": "^0.8.0"
+  },
+  "engines": {
+    "node": ">=12.11.0"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
+    "build:dev": "cross-env NODE_ENV=development INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:dev:package",
+    "build:package": "pnpm run test && tsup",
+    "build:dev:package": "tsup --watch",
+    "dev:link": "pnpm link --global && npm link",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:coverage:open": "vitest run --coverage && open coverage/index.html",
+    "test:perf": "vitest run --config vitest.perf.config.ts",
+    "test:bench": "vitest bench --run --config vitest.perf.config.ts",
+    "test:all": "pnpm run test && pnpm run test:coverage && pnpm run test:perf && pnpm run test:bench",
+    "type:check": "tsc --noEmit",
+    "verify": "pnpm run type:check && pnpm run test:all"
+  }
+}

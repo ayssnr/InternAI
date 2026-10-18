@@ -1,0 +1,211 @@
+.help-page {
+  min-height: 100vh;
+  padding: 35px 45px;
+  background: #f7f8fc;
+}
+
+.back-button {
+  border: none;
+  background: white;
+  color: #555;
+
+  padding: 10px 18px;
+  border-radius: 11px;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  margin-bottom: 25px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  color: #667eea;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.page-header h1 {
+  margin: 7px 0;
+
+  font-size: 30px;
+  color: #252733;
+}
+
+.page-header p {
+  margin: 0;
+  color: #888;
+}
+
+.student-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 15px 25px;
+
+  background: white;
+  border-radius: 16px;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #667eea;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .05);
+}
+
+.student-count span {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+
+.students-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.student-card {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  background: white;
+
+  padding: 20px 24px;
+
+  border-radius: 17px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .05);
+}
+
+.rank {
+  width: 30px;
+  font-weight: 700;
+  color: #999;
+  text-align: center;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #eeeaff;
+  color: #667eea;
+
+  font-weight: 700;
+}
+
+.student-info {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.student-info strong {
+  font-size: 16px;
+  color: #292b36;
+}
+
+.student-info span {
+  font-size: 13px;
+  color: #999;
+}
+
+.score-section {
+  width: 230px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.score-section strong {
+  font-size: 18px;
+  color: #d9534f;
+}
+
+.score-section span {
+  font-size: 11px;
+  color: #999;
+}
+
+.score-bar {
+  height: 7px;
+
+  background: #eee;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.score-bar div {
+  height: 100%;
+
+  background: #e57373;
+
+  border-radius: 10px;
+}
+
+.empty-state {
+  background: white;
+  border-radius: 20px;
+
+  padding: 70px 30px;
+
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 55px;
+}
+
+.empty-state h2 {
+  color: #333;
+}
+
+.empty-state p {
+  color: #888;
+}
+
+@media (max-width: 700px) {
+
+  .help-page {
+    padding: 25px 18px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .student-card {
+    flex-wrap: wrap;
+  }
+
+  .score-section {
+    width: 100%;
+  }
+}

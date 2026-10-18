@@ -1,0 +1,183 @@
+
+<div class="students-page">
+
+  <div class="page-header">
+
+    <div>
+      <span class="eyebrow">SUPERVISOR PANELİ</span>
+
+      <h1>Öğrenciler</h1>
+
+      <p>
+        Platformdaki öğrencileri görüntüle ve takip et.
+      </p>
+    </div>
+
+    <div class="student-count">
+      <span>{{ students.length }}</span>
+      <small>Öğrenci</small>
+    </div>
+
+  </div>
+
+<button
+  class="back-button"
+  (click)="goBack()">
+  ← Geri
+</button>
+  <!-- LOADING -->
+
+  <div class="loading" *ngIf="loading">
+
+    <div class="loading-icon">⏳</div>
+
+    <p>Öğrenciler yükleniyor...</p>
+
+  </div>
+
+
+  <!-- EMPTY -->
+
+  <div
+    class="empty-state"
+    *ngIf="!loading && students.length === 0"
+  >
+
+    <div class="empty-icon">🎓</div>
+
+    <h2>Henüz öğrenci yok</h2>
+
+    <p>
+      Sistemde kayıtlı Student rolünde kullanıcı bulunmuyor.
+    </p>
+
+  </div>
+
+
+  <!-- STUDENTS -->
+
+  <div
+    class="students-grid"
+    *ngIf="!loading && students.length > 0"
+  >
+
+    <div
+      class="student-card"
+      *ngFor="let student of students"
+    >
+
+      <!-- HEADER -->
+
+      <div class="student-header">
+
+        <div class="student-avatar">
+          {{ getInitials(student.name) }}
+        </div>
+
+        <div class="student-info">
+
+          <h3>
+            {{ student.name }}
+          </h3>
+
+          <p>
+            {{ student.email }}
+          </p>
+
+        </div>
+
+        <div class="student-role">
+          Student
+        </div>
+
+      </div>
+
+
+      <!-- STATS -->
+
+      <div class="student-stats">
+
+        <div class="mini-stat">
+
+          <span>📊</span>
+
+          <div>
+            <small>Ortalama Başarı</small>
+
+            <strong>
+              %{{ student.averageScore }}
+            </strong>
+          </div>
+
+        </div>
+
+
+        <div class="mini-stat">
+
+          <span>📝</span>
+
+          <div>
+            <small>Çözülen Quiz</small>
+
+            <strong>
+              {{ student.quizCount }}
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PROGRESS -->
+
+      <div class="progress-section">
+
+        <div class="progress-label">
+
+          <span>Genel Başarı</span>
+
+          <strong>
+            %{{ student.averageScore }}
+          </strong>
+
+        </div>
+
+        <div class="progress-bar">
+
+          <div
+            [style.width.%]="student.averageScore"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- LAST QUIZ -->
+
+      <div class="last-quiz">
+
+        <div>
+          <small>Son Quiz</small>
+
+          <strong>
+            {{ student.lastQuizTitle }}
+          </strong>
+        </div>
+
+        <span>
+          {{
+            student.lastQuizDate
+              ? (student.lastQuizDate | date:'dd MMM yyyy')
+              : 'Henüz yok'
+          }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

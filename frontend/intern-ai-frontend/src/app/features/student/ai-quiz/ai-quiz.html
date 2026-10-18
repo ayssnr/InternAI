@@ -1,0 +1,176 @@
+<div class="ai-quiz-page">
+
+  <div class="ai-quiz-background"></div>
+
+  <header class="quiz-header">
+
+    <button
+      class="back-button"
+      (click)="goBack()">
+      ←
+    </button>
+
+    <div class="header-title">
+
+      <div class="ai-logo">
+        🤖
+      </div>
+
+      <div>
+        <span>INTERN AI</span>
+        <h1>AI Quiz Oluştur</h1>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main class="quiz-content">
+
+    <section class="quiz-card">
+
+      <div class="quiz-icon">
+        🎯
+      </div>
+
+      <h2>
+        Kendi Quizini Oluştur
+      </h2>
+
+      <p class="description">
+        Merhaba {{ userName }} 👋
+        <br>
+        Öğrenmek istediğin konuyu yaz,
+        AI senin için özel bir quiz hazırlasın.
+      </p>
+
+
+      <!-- KONU -->
+
+      <div class="form-group">
+
+        <label>
+          📚 Quiz Konusu
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="topicName"
+          placeholder="Örn: Graf Algoritmaları"
+          [disabled]="isLoading"
+        />
+
+      </div>
+
+
+      <!-- SORU SAYISI -->
+
+      <div class="form-group">
+
+        <label>
+          📝 Soru Sayısı
+        </label>
+
+        <select
+          [(ngModel)]="questionCount"
+          [disabled]="isLoading">
+
+          <option [ngValue]="3">
+            3 Soru
+          </option>
+
+          <option [ngValue]="5">
+            5 Soru
+          </option>
+
+          <option [ngValue]="7">
+            7 Soru
+          </option>
+
+          <option [ngValue]="10">
+            10 Soru
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ZORLUK -->
+
+      <div class="form-group">
+
+        <label>
+          ⚡ Zorluk Seviyesi
+        </label>
+
+        <select
+          [(ngModel)]="difficulty"
+          [disabled]="isLoading">
+
+          <option value="Kolay">
+            🟢 Kolay
+          </option>
+
+          <option value="Orta">
+            🟡 Orta
+          </option>
+
+          <option value="Zor">
+            🔴 Zor
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- HATA -->
+
+      @if (errorMessage) {
+
+        <div class="error-message">
+          ⚠️ {{ errorMessage }}
+        </div>
+
+      }
+
+
+      <!-- OLUŞTUR -->
+
+      <button
+        class="generate-button"
+        (click)="generateQuiz()"
+        [disabled]="isLoading">
+
+        @if (isLoading) {
+
+          <span class="spinner"></span>
+
+          Quiz hazırlanıyor...
+
+        } @else {
+
+          🎯 AI Quiz Oluştur
+
+        }
+
+      </button>
+
+
+      @if (isLoading) {
+
+        <p class="loading-text">
+          🤖 Intern AI sorularını hazırlıyor...
+          <br>
+          Bu işlem birkaç saniye sürebilir.
+        </p>
+
+      }
+
+    </section>
+
+  </main>
+
+</div>

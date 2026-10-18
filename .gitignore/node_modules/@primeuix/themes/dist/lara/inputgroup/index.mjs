@@ -1,0 +1,1 @@
+var r={background:"light-dark({surface.50}, {surface.800})",borderColor:"{form.field.border.color}",color:"{text.muted.color}",borderRadius:"{form.field.border.radius}",padding:"0.5rem 0.5rem",minWidth:"2.375rem",fontWeight:"{form.field.font.weight}",fontSize:"{form.field.font.size}"},o={addon:r};export{r as addon,o as default};

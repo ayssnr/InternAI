@@ -1,0 +1,1 @@
+var r={borderRadius:"{content.border.radius}",background:"light-dark({surface.300}, {surface.600})",height:"1.125rem"},o={background:"{primary.color}"},a={color:"{primary.contrast.color}",fontSize:"0.625rem",fontWeight:"700"},e={root:r,value:o,label:a};export{e as default,a as label,r as root,o as value};

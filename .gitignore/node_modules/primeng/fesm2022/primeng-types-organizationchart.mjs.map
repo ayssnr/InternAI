@@ -1,0 +1,1 @@
+{"version":3,"file":"primeng-types-organizationchart.mjs","sources":["../../src/types/organizationchart/primeng-types-organizationchart.ts"],"sourcesContent":["/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './public_api';\n"],"names":[],"mappings":"AAAA;;AAEG"}

@@ -1,0 +1,1 @@
+var o={mask:{background:"{content.background}",color:"{text.muted.color}"},icon:{size:"1.75rem"}},e={loader:o};export{e as default,o as loader};

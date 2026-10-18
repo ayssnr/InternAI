@@ -1,0 +1,311 @@
+/* You can add global styles to this file, and also import other style files */
+
+body.dark-mode { background: #0f172a; color: #e2e8f0; }
+
+body.dark-mode .dashboard,
+body.dark-mode .statistics-page,
+body.dark-mode .achievements-page,
+body.dark-mode .quiz-page,
+body.dark-mode .login-container {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .chart-card,
+body.dark-mode .summary-card,
+body.dark-mode .achievement-summary,
+body.dark-mode .achievement-card,
+body.dark-mode .quiz-top-bar,
+body.dark-mode .question-card,
+body.dark-mode .result-card,
+body.dark-mode .login-card,
+body.dark-mode .back-button,
+body.dark-mode .achievement-filters button,
+body.dark-mode .filter-empty,
+body.dark-mode .logout-button,
+body.dark-mode .theme-button {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode strong,
+body.dark-mode .brand-name,
+body.dark-mode .profile-info { color: #f8fafc !important; }
+
+body.dark-mode p,
+body.dark-mode .header-content p,
+body.dark-mode .achievement-content p,
+body.dark-mode .summary-card span,
+body.dark-mode .profile-info span,
+body.dark-mode .heatmap-info { color: #94a3b8 !important; }
+
+body.dark-mode .option-button,
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background: #273449 !important;
+  border-color: #475569 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Dashboard surfaces */
+body.dark-mode .welcome-section,
+body.dark-mode .daily-goal,
+body.dark-mode .topic-card,
+body.dark-mode .stat-card,
+body.dark-mode .dashboard .chart-card,
+body.dark-mode .history-item,
+body.dark-mode .empty-history,
+body.dark-mode .achievement {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .nav-links a,
+body.dark-mode .brand-subtitle,
+body.dark-mode .goal-header span,
+body.dark-mode .topic-content p,
+body.dark-mode .chart-days,
+body.dark-mode .history-info span,
+body.dark-mode .empty-history p { color: #94a3b8 !important; }
+
+body.dark-mode .quiz-button { color: #0f172a !important; }
+
+body.dark-mode .progress-track,
+body.dark-mode .bar-track,
+body.dark-mode .distribution-bar,
+body.dark-mode .topic-bar,
+body.dark-mode .summary-progress,
+body.dark-mode .achievement-progress-bar,
+body.dark-mode .line-chart,
+body.dark-mode .heat-cell.level-0 { background: #334155 !important; border-color: #475569 !important; }
+
+/* Statistics and achievements */
+body.dark-mode .best-quiz,
+body.dark-mode .empty-state,
+body.dark-mode .quiz-item,
+body.dark-mode .rank,
+body.dark-mode .quiz-number,
+body.dark-mode .achievement-status,
+body.dark-mode .achievement-card.locked .achievement-icon,
+body.dark-mode .achievement-filters button { background: #273449 !important; border-color: #475569 !important; color: #e2e8f0 !important; }
+
+body.dark-mode .distribution-row > span,
+body.dark-mode .best-quiz-info span,
+body.dark-mode .quiz-info span,
+body.dark-mode .chart-note,
+body.dark-mode .speed-column strong,
+body.dark-mode .speed-topic,
+body.dark-mode .topic-name,
+body.dark-mode .achievement-progress-info { color: #cbd5e1 !important; }
+
+body.dark-mode .achievement-filters button.active { background: #3730a3 !important; border-color: #818cf8 !important; color: #eef2ff !important; }
+
+/* Quiz and form surfaces */
+body.dark-mode .timer,
+body.dark-mode .stop-button,
+body.dark-mode .option-button,
+body.dark-mode .option-number,
+body.dark-mode .result-stat,
+body.dark-mode .result-message,
+body.dark-mode .home-button { background: #273449 !important; border-color: #475569 !important; color: #e2e8f0 !important; }
+
+body.dark-mode .quiz-heading p,
+body.dark-mode .progress-info,
+body.dark-mode .result-description,
+body.dark-mode .result-stat span,
+body.dark-mode .option-text { color: #cbd5e1 !important; }
+/* ================================================= */
+/* STUDENT AI ASSISTANT - DARK MODE */
+/* ================================================= */
+
+body.dark-mode .ai-page {
+  background: #111114 !important;
+  color: #f4f4f5 !important;
+}
+
+/* Background glow */
+
+body.dark-mode .ai-page .ai-background {
+  background: rgba(124, 58, 237, 0.15);
+}
+
+/* ================================================= */
+/* HEADER */
+/* ================================================= */
+
+body.dark-mode .ai-page .ai-header {
+  background: rgba(24, 24, 28, 0.96) !important;
+  border-bottom-color: #2c2c33 !important;
+}
+
+body.dark-mode .ai-page .back-button {
+  background: #27272d !important;
+  color: #f4f4f5 !important;
+}
+
+body.dark-mode .ai-page .header-title h1 {
+  color: #f4f4f5 !important;
+}
+
+body.dark-mode .ai-page .header-title span {
+  color: #a78bfa !important;
+}
+
+/* ================================================= */
+/* NEW CHAT BUTTON */
+/* ================================================= */
+
+body.dark-mode .ai-page .new-chat-button {
+  background: #292333 !important;
+  border-color: #44365c !important;
+  color: #c4b5fd !important;
+}
+
+body.dark-mode .ai-page .new-chat-icon {
+  color: #c4b5fd !important;
+}
+
+body.dark-mode .ai-page .new-chat-button:hover {
+  background: #382d48 !important;
+  border-color: #6d5a91 !important;
+}
+
+/* ================================================= */
+/* WELCOME */
+/* ================================================= */
+
+body.dark-mode .ai-page .welcome h2 {
+  color: #f4f4f5 !important;
+}
+
+body.dark-mode .ai-page .welcome p {
+  color: #a1a1aa !important;
+}
+
+/* ================================================= */
+/* SUGGESTIONS */
+/* ================================================= */
+
+body.dark-mode .ai-page .suggestions button {
+  background: #1c1c21 !important;
+  border-color: #33333b !important;
+  color: #e4e4e7 !important;
+}
+
+body.dark-mode .ai-page .suggestions button:hover {
+  background: #292333 !important;
+  border-color: #7c3aed !important;
+}
+
+/* ================================================= */
+/* MESSAGES */
+/* ================================================= */
+
+body.dark-mode .ai-page .message-avatar {
+  background: #1c1c21 !important;
+  border-color: #33333b !important;
+}
+
+body.dark-mode .ai-page .message-bubble {
+  background: #1c1c21 !important;
+  border-color: #33333b !important;
+  color: #e4e4e7 !important;
+}
+
+body.dark-mode .ai-page .message-name {
+  color: #a1a1aa !important;
+}
+
+/* User message */
+
+body.dark-mode .ai-page .user-row .message-bubble {
+  background: #7c3aed !important;
+  color: #ffffff !important;
+}
+
+/* ================================================= */
+/* INLINE CODE */
+/* ================================================= */
+
+body.dark-mode .ai-page .message-text .inline-code {
+  background: #30283c !important;
+  color: #c4b5fd !important;
+}
+
+/* ================================================= */
+/* INPUT AREA */
+/* ================================================= */
+
+body.dark-mode .ai-page .input-area {
+  background: linear-gradient(
+    to top,
+    #111114 75%,
+    transparent
+  ) !important;
+}
+
+body.dark-mode .ai-page .input-wrapper {
+  background: #1c1c21 !important;
+  border-color: #38383f !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.dark-mode .ai-page textarea {
+  background: transparent !important;
+  color: #f4f4f5 !important;
+}
+
+body.dark-mode .ai-page textarea::placeholder {
+  color: #71717a !important;
+}
+
+/* ================================================= */
+/* SEND BUTTON */
+/* ================================================= */
+
+body.dark-mode .ai-page .send-button {
+  background: #7c3aed !important;
+  color: white !important;
+}
+
+/* ================================================= */
+/* INPUT HINT */
+/* ================================================= */
+
+body.dark-mode .ai-page .input-hint {
+  color: #71717a !important;
+}
+
+/* ================================================= */
+/* TYPING */
+/* ================================================= */
+
+body.dark-mode .ai-page .typing span {
+  background: #a78bfa !important;
+}
+
+/* ================================================= */
+/* CODE BLOCK */
+/* ================================================= */
+
+body.dark-mode .ai-page .code-block {
+  background: #0b0f19 !important;
+  border-color: #30394a !important;
+}
+
+body.dark-mode .ai-page .code-header {
+  background: #171d29 !important;
+  border-bottom-color: #30394a !important;
+}
+
+body.dark-mode .ai-page .code-block pre {
+  background: #0b0f19 !important;
+  color: #e5e7eb !important;
+}

@@ -1,0 +1,1 @@
+var o={transitionDuration:"{transition.duration}"},r={size:"9px",borderRadius:"{border.radius.sm}",focusRing:{width:"{focus.ring.width}",style:"{focus.ring.style}",color:"{focus.ring.color}",offset:"{focus.ring.offset}",shadow:"{focus.ring.shadow}"},background:"light-dark({surface.200}, {surface.700})"},s={root:o,bar:r};export{r as bar,s as default,o as root};

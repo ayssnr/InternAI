@@ -1,0 +1,1 @@
+var t={gap:"0.625rem",fontSize:"{typography.font.size}",fontWeight:"500",textColor:"{text.color}",disabledOpacity:"0.5"},o={root:t};export{o as default,t as root};

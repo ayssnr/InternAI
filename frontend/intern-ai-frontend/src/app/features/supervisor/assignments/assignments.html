@@ -1,0 +1,210 @@
+
+<div class="assignments-page">
+
+  <div class="page-header">
+
+    <button
+      class="back-button"
+      (click)="goBack()">
+      ← Geri
+    </button>
+
+    <div>
+      <h1>Ödev Ata</h1>
+      <p>
+        Öğrencilere konu bazlı ödevler oluştur.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- BAŞARI -->
+  <div
+    *ngIf="successMessage"
+    class="message success">
+    ✓ {{ successMessage }}
+  </div>
+
+
+  <!-- HATA -->
+  <div
+    *ngIf="errorMessage"
+    class="message error">
+    ⚠ {{ errorMessage }}
+  </div>
+
+
+  <!-- ÖDEV FORMU -->
+
+  <div class="assignment-card">
+
+    <h2>Yeni Ödev Oluştur</h2>
+
+    <div class="form-group">
+
+      <label>Öğrenci</label>
+
+      <select
+        [(ngModel)]="selectedStudentId">
+
+        <option value="">
+          Öğrenci seç
+        </option>
+
+        <option
+          *ngFor="let student of students"
+          [value]="student.id">
+
+          {{ student.name }}
+
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Konu</label>
+
+      <select
+        [(ngModel)]="selectedTopicId">
+
+        <option value="">
+          Konu seç
+        </option>
+
+        <option
+          *ngFor="let topic of topics"
+          [value]="topic.id">
+
+          {{ topic.name }}
+
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Ödev Başlığı</label>
+
+      <input
+        type="text"
+        [(ngModel)]="title"
+        placeholder="Örn: Veri Yapıları Tekrar Ödevi">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Açıklama</label>
+
+      <textarea
+        [(ngModel)]="description"
+        placeholder="Ödev hakkında açıklama yaz..."
+        rows="4">
+      </textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Son Teslim Tarihi</label>
+
+      <input
+        type="datetime-local"
+        [(ngModel)]="dueDate">
+
+    </div>
+
+
+    <button
+      class="create-button"
+      (click)="createAssignment()"
+      [disabled]="loading">
+
+      {{ loading ? 'Ödev oluşturuluyor...' : '✓ Ödevi Ata' }}
+
+    </button>
+
+  </div>
+
+
+  <!-- MEVCUT ÖDEVLER -->
+
+  <div class="assignments-list">
+
+    <div class="list-header">
+
+      <h2>Atanan Ödevler</h2>
+
+      <span>
+        {{ assignments.length }} ödev
+      </span>
+
+    </div>
+
+
+    <div
+      *ngIf="assignments.length === 0"
+      class="empty">
+
+      Henüz atanmış ödev bulunmuyor.
+
+    </div>
+
+
+    <div
+      *ngFor="let assignment of assignments"
+      class="assignment-item">
+
+      <div class="assignment-info">
+
+        <h3>
+          {{ assignment.title }}
+        </h3>
+
+        <p>
+          {{ assignment.description || 'Açıklama yok.' }}
+        </p>
+
+        <div class="assignment-meta">
+
+          <span>
+            👨‍🎓 {{ assignment.studentName }}
+          </span>
+
+          <span>
+            📚 {{ assignment.topicName }}
+          </span>
+
+          <span>
+            📅
+            {{ assignment.dueDate | date:'dd.MM.yyyy HH:mm' }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="delete-button"
+        (click)="deleteAssignment(assignment.id)">
+
+        🗑 Sil
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

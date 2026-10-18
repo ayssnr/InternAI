@@ -1,0 +1,1 @@
+var r={background:"light-dark({surface.50}, {surface.800})",borderColor:"{content.border.color}",borderRadius:"{content.border.radius}",color:"{content.color}",gap:"0.5rem",padding:"0.625rem"},o={root:r};export{o as default,r as root};

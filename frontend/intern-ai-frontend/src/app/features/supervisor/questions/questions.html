@@ -1,0 +1,308 @@
+
+<div class="questions-page">
+
+  <!-- HEADER -->
+
+  <div class="page-header">
+
+    <div>
+
+      <span class="eyebrow">
+        SUPERVISOR PANELİ
+      </span>
+
+      <h1>
+        ❓ Soru Ekle
+      </h1>
+
+      <p>
+        Önce bir konu seç, ardından o konuya yeni bir soru ekle.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <button
+  class="back-button"
+  (click)="goBack()">
+  ← Geri
+</button>
+  <!-- BAŞARI MESAJI -->
+
+  <div
+    *ngIf="successMessage"
+    class="message success"
+  >
+    ✓ {{ successMessage }}
+  </div>
+
+
+  <!-- HATA MESAJI -->
+
+  <div
+    *ngIf="errorMessage"
+    class="message error"
+  >
+    ⚠️ {{ errorMessage }}
+  </div>
+
+
+  <!-- YÜKLENİYOR -->
+
+  <div
+    *ngIf="loading && topics.length === 0"
+    class="loading"
+  >
+    Konular yükleniyor...
+  </div>
+
+
+  <!-- HİÇ KONU YOK -->
+
+  <div
+    *ngIf="!loading && topics.length === 0"
+    class="empty-state"
+  >
+
+    <div class="empty-icon">
+      📚
+    </div>
+
+    <h2>
+      Henüz konu bulunmuyor
+    </h2>
+
+    <p>
+      Soru ekleyebilmek için önce en az bir konu oluşturmalısın.
+    </p>
+
+    <a
+      routerLink="/supervisor/topics"
+      class="primary-button"
+    >
+      + Konu Oluştur
+    </a>
+
+  </div>
+
+
+  <!-- KONU LİSTESİ -->
+
+  <section
+    *ngIf="topics.length > 0 && !selectedTopic"
+    class="topics-section"
+  >
+
+    <div class="section-title">
+
+      <h2>
+        Bir konu seç
+      </h2>
+
+      <span>
+        {{ topics.length }} konu
+      </span>
+
+    </div>
+
+
+    <div class="topics-grid">
+
+      <button
+        *ngFor="let topic of topics"
+        type="button"
+        class="topic-card"
+        (click)="selectTopic(topic)"
+      >
+
+        <div class="topic-icon">
+          📚
+        </div>
+
+        <div class="topic-info">
+
+          <h3>
+            {{ topic.name }}
+          </h3>
+
+          <p>
+            {{ topic.description }}
+          </p>
+
+        </div>
+
+        <div class="topic-arrow">
+          →
+        </div>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SORU EKLEME FORMU -->
+
+  <section
+    *ngIf="selectedTopic"
+    class="question-section"
+  >
+
+    <!-- SEÇİLEN KONU -->
+
+    <div class="selected-topic">
+
+      <div class="selected-topic-icon">
+        📚
+      </div>
+
+      <div class="selected-topic-info">
+
+        <span>
+          Seçilen konu
+        </span>
+
+        <strong>
+          {{ selectedTopic.name }}
+        </strong>
+
+      </div>
+
+      <button
+        type="button"
+        class="change-topic"
+        (click)="changeTopic()"
+      >
+        ← Konuyu Değiştir
+      </button>
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <div class="form-card">
+
+      <div class="form-header">
+
+        <h2>
+          Yeni Soru
+        </h2>
+
+        <p>
+          {{ selectedTopic.name }} konusuna soru ekliyorsun.
+        </p>
+
+      </div>
+
+
+      <!-- SORU -->
+
+      <div class="form-group">
+
+        <label>
+          Soru
+        </label>
+
+        <textarea
+          [(ngModel)]="questionText"
+          placeholder="Sorunu buraya yaz..."
+          rows="4"
+        ></textarea>
+
+      </div>
+
+
+      <!-- SEÇENEKLER -->
+
+      <div class="form-group">
+
+        <label>
+          Seçenekler
+        </label>
+
+        <div class="options">
+
+          <div
+            *ngFor="let option of options; let i = index"
+            class="option-row"
+          >
+
+            <span class="option-letter">
+              {{ ['A', 'B', 'C', 'D'][i] }}
+            </span>
+
+            <input
+              type="text"
+              [(ngModel)]="options[i]"
+              [placeholder]="'Seçenek ' + ['A', 'B', 'C', 'D'][i]"
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DOĞRU CEVAP -->
+
+      <div class="form-group">
+
+        <label>
+          Doğru Cevap
+        </label>
+
+        <select
+          [(ngModel)]="correctAnswer"
+        >
+
+          <option [ngValue]="0">
+            A
+          </option>
+
+          <option [ngValue]="1">
+            B
+          </option>
+
+          <option [ngValue]="2">
+            C
+          </option>
+
+          <option [ngValue]="3">
+            D
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- SORUYU EKLE -->
+
+      <button
+        type="button"
+        class="submit-button"
+        (click)="createQuestion()"
+        [disabled]="loading"
+      >
+
+        <span *ngIf="!loading">
+          ✓ Soruyu Ekle
+        </span>
+
+        <span *ngIf="loading">
+          Ekleniyor...
+        </span>
+
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+

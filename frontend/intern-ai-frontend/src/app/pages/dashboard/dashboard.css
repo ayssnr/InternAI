@@ -1,0 +1,1113 @@
+* {
+  box-sizing: border-box;
+}
+
+.dashboard {
+  min-height: 100vh;
+  background: #f7f8fc;
+  color: #20243a;
+  padding-bottom: 60px;
+  font-family: Inter, Arial, sans-serif;
+}
+
+/* NAVBAR */
+
+.navbar {
+  height: 78px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  border-bottom: 1px solid #eceef5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6c63ff, #8f7cff);
+  color: white;
+  font-size: 22px;
+  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.25);
+}
+
+.brand-name {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.brand-subtitle {
+  display: block;
+  font-size: 10px;
+  color: #9ba0b5;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-links a {
+  color: #85899d;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav-links a.active {
+  color: #655be8;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+}
+
+.profile-info strong {
+  display: block;
+  font-size: 13px;
+}
+
+.profile-info span {
+  font-size: 11px;
+  color: #969aad;
+}
+
+.logout-button {
+  margin-left: 8px;
+  padding: 8px 12px;
+  border: 1px solid #e0e2ec;
+  border-radius: 9px;
+  background: #fff;
+  color: #5f6378;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.logout-button:hover {
+  border-color: #fca5a5;
+  background: #fff1f2;
+  color: #dc2626;
+}
+
+.theme-button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #e0e2ec;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* WELCOME */
+
+.welcome-section {
+  max-width: 1180px;
+  margin: 55px auto 30px;
+  padding: 50px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(139, 125, 255, 0.25), transparent 35%),
+    linear-gradient(135deg, #eeedff, #ffffff);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.welcome-label,
+.section-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #7a70e8;
+}
+
+.welcome-text h1 {
+  font-size: 42px;
+  margin: 10px 0;
+  letter-spacing: -1.5px;
+}
+
+.welcome-text h1 span {
+  color: #665be8;
+}
+
+.welcome-text p {
+  color: #777c91;
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+.welcome-decoration {
+  position: relative;
+  width: 180px;
+  height: 150px;
+}
+
+.floating-icon {
+  width: 115px;
+  height: 115px;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 55px;
+  background: white;
+  box-shadow: 0 20px 50px rgba(80, 72, 180, 0.15);
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating-star {
+  position: absolute;
+  color: #8a7fff;
+  font-size: 20px;
+}
+
+.star-1 { top: 5px; right: 10px; }
+.star-2 { bottom: 5px; left: 20px; }
+.star-3 { top: 50px; right: -5px; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+/* DAILY GOAL */
+
+.daily-goal {
+  max-width: 1180px;
+  margin: 0 auto 55px;
+  padding: 25px 30px;
+  background: white;
+  border: 1px solid #eceef5;
+  border-radius: 22px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(30, 35, 70, 0.04);
+}
+
+.goal-icon {
+  width: 58px;
+  height: 58px;
+  background: #fff4d8;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+}
+
+.goal-content { flex: 1; }
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goal-header h3 { margin: 4px 0 0; }
+.goal-header > strong { color: #655be8; }
+
+.goal-progress {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.progress-track {
+  height: 10px;
+  flex: 1;
+  background: #eeeef5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-value {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #6c63ff, #9b8cff);
+  transition: width 0.8s ease;
+}
+
+.goal-progress > span {
+  font-weight: 800;
+  color: #655be8;
+}
+
+
+/* SECTIONS */
+
+.topics-section,
+.statistics-section,
+.achievements-section {
+  max-width: 1180px;
+  margin: 0 auto 60px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  font-size: 27px;
+  margin: 6px 0;
+}
+
+.section-heading p {
+  color: #9296a9;
+  margin: 0;
+  font-size: 14px;
+}
+
+.topic-count {
+  background: #eeedff;
+  color: #655be8;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* TOPICS */
+
+.topics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.topic-card {
+  min-height: 270px;
+  padding: 28px;
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.topic-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 45px rgba(30, 35, 70, 0.12);
+}
+
+.topic-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.topic-content { flex: 1; }
+
+.topic-content h3 {
+  font-size: 21px;
+  margin: 0 0 10px;
+}
+
+.topic-content p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.75;
+  margin: 0;
+}
+
+.quiz-button {
+  width: 100%;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.85);
+  color: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.quiz-button:hover {
+  background: white;
+  transform: scale(1.02);
+}
+
+
+/* TOPIC COLORS */
+
+.topic-0 { background: linear-gradient(145deg, #e5edff, #d8e4ff); color: #3656a8; }
+.topic-0 .topic-icon { background: #ffffffaa; }
+.topic-1 { background: linear-gradient(145deg, #eee6ff, #e3d7ff); color: #7047a8; }
+.topic-2 { background: linear-gradient(145deg, #def8ed, #cdf1df); color: #27825c; }
+.topic-3 { background: linear-gradient(145deg, #fff0da, #ffe4bd); color: #a96925; }
+.topic-4 { background: linear-gradient(145deg, #ffe4ec, #ffd5e0); color: #a94d6c; }
+.topic-5 { background: linear-gradient(145deg, #def5f7, #ccecef); color: #277d86; }
+
+
+/* ========================= */
+/* STATISTICS: 4 EŞİT ÖZET KARTI */
+/* ========================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 22px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.09);
+}
+
+.stat-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.quiz-icon { background: #eee8ff; }
+.question-icon { background: #e5f4ff; }
+.correct-icon { background: #e4f8ed; }
+.success-icon { background: #fff1d9; }
+
+.stat-content p {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #777;
+}
+
+.stat-content strong {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+}
+
+
+/* ========================= */
+/* PERFORMANS GRAFİKLERİ: Haftalık Aktivite / Başarı Oranı / Konu Performansı */
+/* Bu üç kart burada YAN YANA dizilir                                        */
+/* ========================= */
+
+.performance-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: stretch;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 25px;
+  padding: 25px;
+  border: 1px solid #eceef5;
+  box-shadow: 0 8px 30px rgba(30, 35, 70, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.chart-header > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chart-icon {
+  width: 40px;
+  height: 40px;
+  background: #f0efff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.chart-header p {
+  margin: 4px 0 0;
+  color: #9b9fb0;
+  font-size: 11px;
+}
+
+.chart-badge {
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #f2f2fa;
+  color: #74788e;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+
+/* LINE CHART (Haftalık Aktivite) */
+
+.fake-line-chart {
+  flex: 1;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.chart-line {
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  border-bottom: 1px solid #ececf2;
+  padding: 0 5px;
+}
+
+.chart-line span {
+  flex: 1;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, #8278ff, #dcd9ff);
+  transition: 0.3s;
+}
+
+.chart-line span:hover {
+  transform: scaleY(1.05);
+}
+
+.chart-days {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 5px 0;
+  color: #aaaebe;
+  font-size: 10px;
+}
+
+
+/* DONUT (Başarı Oranı) */
+
+.donut-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 190px;
+}
+
+.donut {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(#e9e9f1 0deg, #e9e9f1 360deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.donut::before {
+  content: "";
+  width: 112px;
+  height: 112px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.donut-center {
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.donut-center strong { font-size: 25px; }
+.donut-center span { font-size: 9px; color: #a3a6b6; }
+
+
+/* TOPIC BARS (Konu Performansı) */
+
+.topic-bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+
+.bar-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 7px;
+}
+
+.bar-info strong { color: #9da0b0; }
+
+.bar-track {
+  height: 7px;
+  background: #f0f0f5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #6c63ff, #9a8fff);
+}
+
+
+/* ACHIEVEMENTS */
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.achievement {
+  background: white;
+  border: 1px solid #eceef5;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.achievement-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  background: #f1f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.achievement div:nth-child(2) { flex: 1; }
+
+.achievement h3 {
+  font-size: 13px;
+  margin: 0 0 4px;
+}
+
+.achievement p {
+  font-size: 10px;
+  color: #999dae;
+  margin: 0;
+}
+
+.achievement > span { font-size: 25px; }
+.achievement.locked { opacity: 0.7; }
+
+
+/* AI */
+
+.ai-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 35px;
+  border-radius: 27px;
+  background:
+    radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.15), transparent 30%),
+    linear-gradient(120deg, #554bd4, #756cf0);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(87, 75, 210, 0.25);
+}
+
+.ai-glow {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  right: 20%;
+  top: -130px;
+}
+
+.ai-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+}
+
+.ai-content { flex: 1; }
+
+.ai-content > span {
+  font-size: 10px;
+  letter-spacing: 2px;
+  opacity: 0.75;
+}
+
+.ai-content h2 {
+  margin: 7px 0;
+  font-size: 22px;
+}
+
+.ai-content p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+.ai-button {
+  border: none;
+  padding: 14px 20px;
+  border-radius: 13px;
+  background: white;
+  color: #5e55d8;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ai-button span { margin-left: 8px; }
+
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 1000px) {
+
+  .navbar { padding: 0 25px; }
+  .nav-links { display: none; }
+
+  .welcome-section,
+  .daily-goal,
+  .topics-section,
+  .statistics-section,
+  .achievements-section,
+  .ai-section {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .topics { grid-template-columns: repeat(2, 1fr); }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .performance-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Konu Performansı tam genişlik alsın, Aktivite + Donut üstte yan yana kalsın */
+  .performance-card { grid-column: span 2; }
+
+  .achievement-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 650px) {
+
+  .profile-info { display: none; }
+
+  .welcome-section { padding: 30px; }
+  .welcome-text h1 { font-size: 30px; }
+  .welcome-decoration { display: none; }
+
+  .topics { grid-template-columns: 1fr; }
+
+  .stats-grid { grid-template-columns: 1fr; }
+
+  .performance-grid { grid-template-columns: 1fr; }
+  .performance-card { grid-column: span 1; }
+
+  .achievement-grid { grid-template-columns: 1fr; }
+
+  .ai-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ai-button { width: 100%; }
+}
+
+.real-chart-container {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  margin-top: 20px;
+}
+.donut-chart-container {
+  height: 300px;
+}
+
+
+.quiz-history-card {
+  min-height: 320px;
+}
+
+/* .quiz-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+} */
+
+.quiz-history-list {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.quiz-history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.quiz-history-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #f8fafc;
+  transition: transform 0.2s ease;
+}
+
+.history-item:hover {
+  transform: translateY(-2px);
+}
+
+.history-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef2ff;
+  font-size: 20px;
+}
+
+.history-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.history-info strong {
+  font-size: 15px;
+}
+
+.history-info span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.history-info small {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.history-score {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.high-score {
+  color: #16a34a;
+}
+
+.medium-score {
+  color: #d97706;
+}
+
+.low-score {
+  color: #dc2626;
+}
+
+.empty-history {
+  text-align: center;
+  padding: 35px 15px;
+}
+
+.empty-history span {
+  font-size: 35px;
+}
+
+.empty-history p {
+  font-weight: 600;
+  margin: 10px 0 5px;
+}
+
+.empty-history small {
+  color: #64748b;
+}
+.assignments-section {
+  margin-top: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    margin: 5px 0 0;
+    color: #777;
+  }
+}
+
+.assignment-count {
+  background: #667eea;
+  color: white;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.assignment-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .06);
+}
+
+.assignment-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.assignment-topic {
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.assignment-due {
+  color: #666;
+  margin-top: 12px;
+}
+
+.pending,
+.completed {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.empty-assignments {
+  padding: 30px;
+  text-align: center;
+  background: white;
+  border-radius: 15px;
+  color: #777;
+}
+/* =====================================================
+   KONU FİLTRELERİ
+   ===================================================== */
+
+.topic-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 0 0 24px;
+  padding: 5px;
+
+  width: fit-content;
+
+  background: #f1f5f9;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.topic-filters button {
+  border: none;
+  background: transparent;
+
+  padding: 9px 15px;
+
+  border-radius: 10px;
+
+  color: #64748b;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.topic-filters button:hover {
+  color: #4f46e5;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.topic-filters button.active {
+  background: white;
+
+  color: #4f46e5;
+
+  box-shadow:
+    0 3px 10px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =====================================================
+   AI KONU ETİKETİ
+   ===================================================== */
+
+.topic-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 6px;
+}
+
+.topic-title-row h3 {
+  margin: 0;
+}
+
+.ai-topic-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 4px 8px;
+
+  border-radius: 8px;
+
+  background: #ede9fe;
+  color: #7c3aed;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* MOBİL */
+
+@media (max-width: 650px) {
+
+  .topic-filters {
+    width: 100%;
+
+    overflow-x: auto;
+
+    box-sizing: border-box;
+  }
+
+  .topic-filters button {
+    white-space: nowrap;
+  }
+
+}

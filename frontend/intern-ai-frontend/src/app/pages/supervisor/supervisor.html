@@ -1,0 +1,463 @@
+<div class="supervisor-page">
+
+  <div class="supervisor-topbar">
+
+    <button
+      class="supervisor-logout-button"
+      (click)="logout()">
+      🚪 Çıkış Yap
+    </button>
+      <button
+    class="supervisor-theme-button"
+    (click)="toggleDarkMode()">
+    {{ isDarkMode ? '☀️' : '🌙' }}
+  </button>
+
+  </div>
+
+  <!-- HEADER -->
+  <header class="page-header">
+
+    <div>
+      <span class="eyebrow">SUPERVISOR PANELİ</span>
+
+      <h1>
+        Hoş geldin, Supervisor 👋
+      </h1>
+
+      <p>
+        Öğrencilerini, içeriklerini ve ödevlerini buradan yönetebilirsin.
+      </p>
+    </div>
+
+    <div class="header-actions">
+
+      <a
+        routerLink="/supervisor/topics"
+        class="action-button secondary"
+      >
+        📚 Yeni Konu
+      </a>
+
+      <a
+        routerLink="/supervisor/questions"
+        class="action-button primary"
+      >
+        + Yeni Soru
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- QUICK ACTIONS -->
+<section> 
+  <div class="quick-actions">
+
+    <div class="quick-card">
+
+      <div class="quick-icon purple">
+        📚
+      </div>
+        <div>
+        <strong>Yeni Konu Ekle</strong>
+        <span>Yeni bir eğitim konusu oluştur</span>
+      </div>
+
+      <a routerLink="/supervisor/topics">
+        →
+      </a>
+
+    </div>
+  
+
+
+
+    <div class="quick-card">
+      <div class="quick-icon purple">
+       👨‍🎓
+       </div>
+
+        <div>
+        <strong>Öğrenciler</strong>
+        <span>Öğrencilerini görüntüle ve takip et</span>
+        </div>
+        
+        <a routerLink="/supervisor/students">
+           →
+        </a>
+    </div> 
+
+  
+
+    <div class="quick-card">
+
+      <div class="quick-icon blue">
+        ❓
+      </div>
+
+      <div>
+        <strong>Yeni Soru Ekle</strong>
+        <span>Quizlere yeni soru ekle</span>
+      </div>
+
+      <a routerLink="/supervisor/questions">
+        →
+      </a>
+
+    </div> 
+
+
+    <div class="quick-card">
+
+      <div class="quick-icon green">
+        📝
+      </div>
+
+      <div>
+        <strong> Ödev Ata</strong>
+        <span>Öğrencilerine yeni ödev gönder</span>
+      </div>
+
+      <a routerLink="/supervisor/assignments">
+        →
+      </a>
+    </div> 
+
+
+
+    
+  </div>
+</section>
+
+
+  <!-- STATS -->
+  <section class="stats-grid">
+
+    <div class="stat-card">
+
+      <div class="stat-icon purple">
+        👨‍🎓
+      </div>
+
+      <div class="stat-content">
+
+        <span>Toplam Öğrenci</span>
+
+        <strong>
+          {{ students}}
+        </strong>
+
+        <small>
+          Sistemde kayıtlı Student
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="stat-icon blue">
+        📚
+      </div>
+
+      <div class="stat-content">
+
+        <span>Toplam Konu</span>
+
+        <strong>
+          {{ topics }}
+        </strong>
+
+        <small>
+          Aktif eğitim konusu
+        </small>
+
+        <a routerLink="/supervisor/topics" class="stat-detail-link" > Detayları Gör → </a>
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="stat-icon orange">
+        ❓
+      </div>
+
+      <div class="stat-content">
+
+       
+         <span>Toplam Soru</span>
+        <strong>
+          {{ questions }}
+        </strong>
+
+        <small>
+          Quiz sorusu
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="stat-icon green">
+        📝
+      </div>
+
+      <div class="stat-content">
+
+       
+         <span>Aktif Ödev</span>
+        <strong>
+          {{ activeAssignments }}
+        </strong>
+        
+
+        <small>
+         Öğrencilere atanmış ödev 
+        </small>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MAIN GRID -->
+  <section class="dashboard-grid">
+
+
+    <!-- TOP STUDENTS -->
+    <div class="panel">
+
+      <div class="panel-header">
+
+        <div>
+          <span class="panel-label">BAŞARI</span>
+
+          <h2>
+            🏆 En Başarılı Öğrenciler
+          </h2>
+
+          <p>
+            Genel quiz performansına göre ilk 5 öğrenci
+          </p>
+        </div>
+
+        <a routerLink="/supervisor/students">
+          Tümünü Gör →
+        </a>
+
+      </div>
+
+
+      <div class="student-list">
+
+        <div
+          class="student-row"
+          *ngFor="let student of topStudents; let i = index"
+        >
+
+          <div
+            class="rank"
+            [class.first]="i === 0"
+            [class.second]="i === 1"
+            [class.third]="i === 2"
+          >
+            {{ i + 1 }}
+          </div>
+
+
+          <div class="student-avatar">
+            {{ student.initials }}
+          </div>
+
+
+          <div class="student-info">
+
+            <strong>
+              {{ student.name }}
+            </strong>
+
+            <span>
+              Genel başarı
+            </span>
+
+          </div>
+
+
+          <div class="score">
+
+            <strong>
+              %{{ student.score }}
+            </strong>
+
+            <div class="score-bar">
+
+              <div
+                [style.width.%]="student.score"
+              ></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- NEED HELP -->
+    <div class="panel">
+
+      <div class="panel-header">
+
+        <div>
+
+          <span class="panel-label warning">
+            DİKKAT
+
+          </span>
+
+          <h2>
+            ⚠️ Desteğe İhtiyaç Duyanlar
+          </h2>
+
+          <p>
+            Başarı oranı düşük öğrenciler
+          </p>
+
+        </div>
+
+        <a routerLink="/supervisor/students">
+          Tümünü Gör →
+        </a>
+
+      </div>
+
+
+      <div class="help-list">
+
+        <div
+          class="help-row"
+          *ngFor="let student of studentsNeedHelp"
+        >
+
+          <div class="help-avatar">
+            {{ student.name.charAt(0) }}
+          </div>
+
+
+          <div class="help-info">
+
+            <strong>
+              {{ student.name }}
+            </strong>
+
+            <span>
+              Genel başarı
+            </span>
+
+          </div>
+
+
+          <div class="help-score">
+
+            <strong>
+              %{{ student.score }}
+            </strong>
+
+            <span>
+              Düşük
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ACTIVITIES -->
+  <section class="panel activity-panel">
+
+    <div class="panel-header">
+
+      <div>
+
+        <span class="panel-label">
+          SON AKTİVİTELER
+        </span>
+
+        <h2>
+          🕐 Öğrenci Aktiviteleri
+        </h2>
+
+        <p>
+          Öğrencilerinin son quiz ve ödev aktiviteleri
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="activity-list">
+
+      <div
+        class="activity-row"
+        *ngFor="let activity of recentActivities"
+      >
+
+        <div class="activity-avatar">
+          {{ activity.student.charAt(0) }}
+        </div>
+
+
+        <div class="activity-info">
+
+          <strong>
+            {{ activity.student }}
+          </strong>
+
+          <span>
+            {{ activity.action }}
+          </span>
+
+        </div>
+
+
+        <span
+          class="activity-status"
+          [class.completed]="activity.status === 'Tamamlandı'"
+          [class.pending]="activity.status === 'Bekliyor'"
+        >
+          {{ activity.status }}
+        </span>
+
+
+        <span class="activity-time">
+          {{ activity.time }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

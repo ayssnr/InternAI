@@ -1,0 +1,386 @@
+
+<div class="topics-page">
+
+  <!-- HEADER -->
+
+  <div class="page-header">
+
+    <span class="eyebrow">
+      SUPERVISOR PANELİ
+    </span>
+
+    <h1>Konu Yönetimi</h1>
+
+    <p>
+      Eğitim konularını görüntüle, düzenle ve yönet.
+    </p>
+
+  </div>
+
+<button
+  class="back-button"
+  (click)="goBack()">
+  ← Geri
+</button>
+  <!-- MESSAGES -->
+
+  <div
+    class="message success"
+    *ngIf="successMessage"
+  >
+    ✅ {{ successMessage }}
+  </div>
+
+  <div
+    class="message error"
+    *ngIf="errorMessage"
+  >
+    ❌ {{ errorMessage }}
+  </div>
+
+
+  <!-- TOP BAR -->
+
+  <div class="topics-toolbar">
+
+    <div class="topic-count">
+
+      <div class="count-icon">
+        📚
+      </div>
+
+      <div>
+
+        <strong>
+          {{ topics.length }} Konu
+        </strong>
+
+        <span>
+          Sistemde kayıtlı eğitim konusu
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="add-button"
+      type="button"
+      (click)="showCreateForm = !showCreateForm"
+    >
+
+      <span>
+        {{ showCreateForm ? '✕ Kapat' : '＋ Yeni Konu Ekle' }}
+      </span>
+
+    </button>
+
+  </div>
+
+
+  <!-- CREATE FORM -->
+
+  <div
+    class="create-card"
+    *ngIf="showCreateForm"
+  >
+
+    <div class="create-header">
+
+      <div class="create-icon">
+        📚
+      </div>
+
+      <div>
+
+        <h2>Yeni Konu Oluştur</h2>
+
+        <p>
+          Öğrencilerin için yeni bir eğitim konusu ekle.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <form
+      (ngSubmit)="createTopic()"
+    >
+
+      <div class="form-group">
+
+        <label>
+          Konu Adı
+        </label>
+
+        <input
+          type="text"
+          name="newName"
+          [(ngModel)]="newTopic.name"
+          placeholder="Örn: Veri Yapıları"
+          autocomplete="off"
+        />
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Açıklama
+        </label>
+
+        <textarea
+          name="newDescription"
+          [(ngModel)]="newTopic.description"
+          placeholder="Bu konu hakkında kısa bir açıklama yaz..."
+          rows="4"
+        ></textarea>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="save-button"
+        [disabled]="loading"
+      >
+
+        {{ loading ? 'Ekleniyor...' : '✓ Konuyu Oluştur' }}
+
+      </button>
+
+    </form>
+
+  </div>
+
+
+  <!-- LOADING -->
+
+  <div
+    class="loading"
+    *ngIf="loading && topics.length === 0"
+  >
+    Konular yükleniyor...
+  </div>
+
+
+  <!-- TOPICS -->
+
+  <div
+    class="topics-grid"
+    *ngIf="topics.length > 0"
+  >
+
+    <div
+      class="topic-card"
+      *ngFor="let topic of topics"
+    >
+
+
+      <!-- NORMAL MODE -->
+
+      <ng-container
+        *ngIf="editingId !== topic.id"
+      >
+
+        <div class="topic-top">
+
+          <div class="topic-icon">
+            📚
+          </div>
+
+          <span class="topic-badge">
+            Eğitim Konusu
+          </span>
+
+        </div>
+
+
+        <h3>
+          {{ topic.name }}
+        </h3>
+
+        <p class="topic-description">
+          {{ topic.description }}
+        </p>
+
+
+        <div class="topic-actions">
+
+          <button
+            type="button"
+            class="edit-button"
+            (click)="startEdit(topic)"
+          >
+            ✏️ Düzenle
+          </button>
+
+          <button
+            type="button"
+            class="delete-button"
+            (click)="confirmDelete(topic.id)"
+          >
+            🗑️ Sil
+          </button>
+
+        </div>
+
+
+        <!-- DELETE CONFIRM -->
+
+        <div
+          class="delete-confirm"
+          *ngIf="deletingId === topic.id"
+        >
+
+          <strong>
+            ⚠️ Konuyu silmek istediğine emin misin?
+          </strong>
+
+          <p>
+            Bu işlem geri alınamaz.
+          </p>
+
+          <div class="confirm-actions">
+
+            <button
+              type="button"
+              class="cancel-button"
+              (click)="cancelDelete()"
+            >
+              Vazgeç
+            </button>
+
+            <button
+              type="button"
+              class="confirm-delete-button"
+              (click)="deleteTopic(topic.id)"
+            >
+              ✓ Evet, Sil
+            </button>
+
+          </div>
+
+        </div>
+
+      </ng-container>
+
+
+      <!-- EDIT MODE -->
+
+      <ng-container
+        *ngIf="editingId === topic.id"
+      >
+
+        <div class="edit-header">
+
+          <div class="topic-icon">
+            ✏️
+          </div>
+
+          <div>
+
+            <h3>
+              Konuyu Düzenle
+            </h3>
+
+            <span>
+              Değişikliklerini kaydet
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Konu Adı
+          </label>
+
+          <input
+            type="text"
+            [name]="'editName' + topic.id"
+            [(ngModel)]="editTopic.name"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Açıklama
+          </label>
+
+          <textarea
+            [name]="'editDescription' + topic.id"
+            [(ngModel)]="editTopic.description"
+            rows="5"
+          ></textarea>
+
+        </div>
+
+
+        <div class="edit-actions">
+
+          <button
+            type="button"
+            class="cancel-button"
+            (click)="cancelEdit()"
+          >
+            İptal
+          </button>
+
+          <button
+            type="button"
+            class="confirm-button"
+            [disabled]="loading"
+            (click)="updateTopic(topic.id)"
+          >
+            ✓ Değişiklikleri Onayla
+          </button>
+
+        </div>
+
+      </ng-container>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- EMPTY -->
+
+  <div
+    class="empty-state"
+    *ngIf="!loading && topics.length === 0"
+  >
+
+    <div class="empty-icon">
+      📚
+    </div>
+
+    <h2>Henüz konu yok</h2>
+
+    <p>
+      İlk eğitim konunu oluşturarak başlayabilirsin.
+    </p>
+
+    <button
+      type="button"
+      class="add-button"
+      (click)="showCreateForm = true"
+    >
+      ＋ İlk Konuyu Oluştur
+    </button>
+
+  </div>
+
+</div>
+

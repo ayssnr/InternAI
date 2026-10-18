@@ -1,0 +1,1 @@
+{"version":3,"file":"primeng-types-editor.mjs","sources":["../../src/types/editor/primeng-types-editor.ts"],"sourcesContent":["/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './public_api';\n"],"names":[],"mappings":"AAAA;;AAEG"}

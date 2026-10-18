@@ -1,0 +1,1 @@
+var r={borderRadius:"{form.field.border.radius}",invalidBorderColor:"{form.field.invalid.border.color}"},o={root:r};export{o as default,r as root};

@@ -1,0 +1,682 @@
+<div class="dashboard">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+
+    <div class="brand">
+      <div class="brand-icon">🧠</div>
+
+      <div>
+        <span class="brand-name">InternAI</span>
+        <span class="brand-subtitle">Learn. Practice. Grow.</span>
+      </div>
+    </div>
+
+
+    <div class="nav-links">
+      <a class="active">Ana Sayfa</a>
+    <a routerLink="/statistics" class="statistics-button">
+  📊 İstatistikler
+</a>
+<a routerLink="/student/assignments">
+  📋 Ödevlerim
+</a>
+  <a routerLink="/achievements"> 🏆Başarılar</a>
+    </div>
+
+    <div class="profile">
+
+      <div class="profile-avatar">
+        {{ userName.charAt(0).toUpperCase() }}
+      </div>
+
+      <div class="profile-info">
+        <strong>{{ userName }}</strong>
+        <span>{{ role }}</span>
+      </div>
+
+      <button class="theme-button" type="button" (click)="toggleDarkMode()" [attr.aria-label]="isDarkMode ? 'Açık temaya geç' : 'Koyu temaya geç'">
+        {{ isDarkMode ? '☀️' : '🌙' }}
+      </button>
+
+      <button class="logout-button" type="button" (click)="logout()">
+        Çıkış Yap
+      </button>
+
+    </div>
+
+  </nav>
+
+
+  <!-- WELCOME -->
+  <section class="welcome-section">
+
+    <div class="welcome-text">
+
+      <span class="welcome-label">ÖĞRENME MERKEZİN</span>
+
+      <h1>
+        👋 Hoş Geldin,
+        <span>{{ userName }}!</span>
+      </h1>
+
+      <p>
+        Bugün kendine yeni bir şey öğretmeye ne dersin?
+        Bir quiz seç ve öğrenmeye başla. 🚀
+      </p>
+
+    </div>
+
+    <div class="welcome-decoration">
+      <div class="floating-icon">🧠</div>
+      <div class="floating-star star-1">✦</div>
+      <div class="floating-star star-2">✦</div>
+      <div class="floating-star star-3">✦</div>
+    </div>
+
+  </section>
+
+
+  <!-- DAILY GOAL -->
+  <section class="daily-goal">
+
+    <div class="goal-icon">
+      🎯
+    </div>
+
+    <div class="goal-content">
+
+      <div class="goal-header">
+
+        <div>
+          <span class="section-label">BUGÜNKÜ HEDEFİN</span>
+          <h3>Öğrenme yolculuğuna devam et!</h3>
+        </div>
+
+        <strong>{{ topics.length }} konu</strong>
+
+      </div>
+
+      <div class="goal-progress">
+
+        <div class="progress-track">
+          <div
+            class="progress-value"
+            [style.width.%]="dailyProgress">
+          </div>
+        </div>
+
+        <span>%{{ dailyProgress }}</span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TOPICS -->
+  <section class="topics-section">
+
+    <div class="section-heading">
+
+  <div>
+    <span class="section-label">ÖĞRENME ALANLARI</span>
+
+    <h2>
+      📚 Konular
+    </h2>
+
+    <p>
+      Öğrenmek istediğin konuyu seç ve quiz'e başla.
+    </p>
+  </div>
+
+  <span class="topic-count">
+    {{ filteredTopics.length }} konu
+  </span>
+
+</div>
+
+
+<!-- KONU FİLTRELERİ -->
+
+<div class="topic-filters">
+
+  <button
+    type="button"
+    [class.active]="selectedTopicFilter === 'all'"
+    (click)="selectedTopicFilter = 'all'">
+
+    📚 Tümü
+
+  </button>
+
+  <button
+    type="button"
+    [class.active]="selectedTopicFilter === 'system'"
+    (click)="selectedTopicFilter = 'system'">
+
+    🏫 Sistem Konuları
+
+  </button>
+
+  <button
+    type="button"
+    [class.active]="selectedTopicFilter === 'ai'"
+    (click)="selectedTopicFilter = 'ai'">
+
+    ✨ AI Konuları
+
+  </button>
+
+</div>
+
+
+    <div class="topics">
+
+      <div
+        class="topic-card"
+        *ngFor="let topic of filteredTopics; let i = index"
+        [ngClass]="'topic-' + (i % 6)"
+      >
+
+        <div class="topic-icon">
+
+          <span *ngIf="i % 6 === 0">🗂️</span>
+          <span *ngIf="i % 6 === 1">🧠</span>
+          <span *ngIf="i % 6 === 2">💻</span>
+          <span *ngIf="i % 6 === 3">🗄️</span>
+          <span *ngIf="i % 6 === 4">🌐</span>
+          <span *ngIf="i % 6 === 5">⚙️</span>
+
+        </div>
+
+      <div class="topic-content">
+
+  <div class="topic-title-row">
+
+    <h3>{{ topic.name }}</h3>
+
+    <span
+      *ngIf="topic.isAiGenerated"
+      class="ai-topic-badge">
+      ✨ AI
+    </span>
+
+  </div>
+
+  <p>
+    {{ topic.description }}
+  </p>
+
+</div>
+
+        <button
+          class="quiz-button"
+          (click)="startQuiz(topic.id)"
+        >
+          Quiz'e Başla
+          <span>→</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- STATISTICS -->
+  <section class="statistics-section">
+
+    <div class="section-heading">
+
+      <div>
+        <span class="section-label">PERFORMANSIN</span>
+
+        <h2>
+          📊 Öğrenme İstatistiklerin
+        </h2>
+
+        <p>
+          Gelişimini takip et ve hedeflerine yaklaş.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- 4 EŞİT SÜTUNLU ÖZET KARTLAR -->
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <div class="stat-icon quiz-icon">📝</div>
+        <div class="stat-content">
+          <p>Çözülen Quiz</p>
+          <strong>{{ stats?.totalQuizzes ?? 0 }}</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon question-icon">❓</div>
+        <div class="stat-content">
+          <p>Toplam Soru</p>
+          <strong>{{ stats?.totalQuestions ?? 0 }}</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon correct-icon">✅</div>
+        <div class="stat-content">
+          <p>Doğru Cevap</p>
+          <strong>{{ stats?.totalCorrect ?? 0 }}</strong>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon success-icon">🎯</div>
+        <div class="stat-content">
+          <p>Başarı Oranı</p>
+          <strong>%{{ stats?.successRate ?? 0 }}</strong>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- 3 SÜTUNLU PERFORMANS GRAFİKLERİ: Haftalık Aktivite / Başarı Oranı / Konu Performansı -->
+    <div class="performance-grid">
+
+      <!-- WEEKLY ACTIVITY -->
+<div class="chart-card activity-card">
+
+  <div class="chart-header">
+
+    <div>
+      <span class="chart-icon">📈</span>
+
+      <div>
+        <h3>Quiz Aktivitesi</h3>
+        <p>Çözdüğün quizler</p>
+      </div>
+    </div>
+
+    <span class="chart-badge">
+      Performans
+    </span>
+
+  </div>
+
+  <!-- GERÇEK CHART.JS GRAFİĞİ -->
+  <div class="real-chart-container">
+
+    <canvas #activityChart></canvas>
+
+  </div>
+
+</div>
+
+     <!-- SUCCESS RATE -->
+<div class="chart-card success-card">
+
+  <div class="chart-header">
+
+    <div>
+      <span class="chart-icon">🎯</span>
+
+      <div>
+        <h3>Başarı Oranı</h3>
+        <p>Genel performans</p>
+      </div>
+    </div>
+
+    <span class="chart-badge">
+      Genel
+    </span>
+
+  </div>
+
+  <div class="real-chart-container donut-chart-container">
+
+    <canvas #successChart></canvas>
+
+  </div>
+
+</div>
+
+
+      <!-- TOPIC PERFORMANCE -->
+<div class="chart-card performance-card">
+
+  <div class="chart-header">
+
+    <div>
+      <span class="chart-icon">🏆</span>
+
+      <div>
+        <h3>Konu Performansı</h3>
+        <p>Konularına göre ilerleme</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="topic-bars">
+
+    <div
+      class="topic-bar"
+      *ngFor="let topic of topicProgress"
+    >
+
+      <div class="bar-info">
+
+        <span>
+          {{ topic.name }}
+        </span>
+
+        <strong>
+          %{{ topic.percentage }}
+        </strong>
+
+      </div>
+
+      <div class="bar-track">
+
+        <div
+          class="bar-fill"
+          [style.width.%]="topic.percentage"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+   </div>
+
+
+   <!-- QUIZ HISTORY -->
+
+<div class="chart-card quiz-history-card">
+
+  <div class="chart-header">
+
+    <div>
+
+      <span class="chart-icon">🕒</span>
+
+      <div>
+        <h3>Quiz Geçmişi</h3>
+        <p>Son çözdüğün quizler</p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="quiz-history-list">
+
+    <div
+      class="history-item"
+      *ngFor="let quiz of quizHistory"
+    >
+
+      <div class="history-icon">
+        📝
+      </div>
+
+
+      <div class="history-info">
+
+        <strong>
+          {{ quiz.topicName }}
+        </strong>
+
+        <span>
+          {{ quiz.score }} / {{ quiz.totalQuestions }} doğru
+        </span>
+
+        <small>
+          {{ quiz.date | date:'dd MMMM yyyy' }}
+        </small>
+
+      </div>
+
+
+      <div
+        class="history-score"
+        [class.high-score]="quiz.percentage >= 80"
+        [class.medium-score]="
+          quiz.percentage >= 50 &&
+          quiz.percentage < 80
+        "
+        [class.low-score]="quiz.percentage < 50"
+      >
+
+        %{{ quiz.percentage }}
+
+      </div>
+
+    </div>
+
+
+    <!-- HENÜZ QUIZ YOKSA -->
+
+    <div
+      *ngIf="quizHistory.length === 0"
+      class="empty-history"
+    >
+
+      <span>📚</span>
+
+      <p>Henüz quiz çözmedin.</p>
+
+      <small>
+        Bir quiz çözerek gelişimini takip etmeye başla!
+      </small>
+
+    </div>
+
+  </div>
+
+</div>
+
+  </section>
+
+
+<!-- ACHIEVEMENTS -->
+
+<section class="achievements-section">
+
+  <div class="section-heading">
+
+    <div>
+
+      <span class="section-label">
+        MOTİVASYON
+      </span>
+
+      <h2>
+        🏆 Başarıların
+      </h2>
+
+      <p>
+        Öğrenmeye devam ettikçe yeni rozetlerin kilidini aç.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="achievement-grid">
+
+
+    <!-- İLK QUIZ -->
+
+    <div
+      class="achievement"
+      [class.locked]="!achievements.firstQuiz"
+      [class.unlocked]="achievements.firstQuiz"
+    >
+
+      <div class="achievement-icon">
+        🔥
+      </div>
+
+      <div>
+
+        <h3>
+          İlk Quiz
+        </h3>
+
+        <p>
+          İlk quizini tamamla
+        </p>
+
+      </div>
+
+      <span>
+        {{ achievements.firstQuiz ? '🔓' : '🔒' }}
+      </span>
+
+    </div>
+
+
+    <!-- QUIZ USTASI -->
+
+    <div
+      class="achievement"
+      [class.locked]="!achievements.quizMaster"
+      [class.unlocked]="achievements.quizMaster"
+    >
+
+      <div class="achievement-icon">
+        ⭐
+      </div>
+
+      <div>
+
+        <h3>
+          Quiz Ustası
+        </h3>
+
+        <p>
+          10 quiz tamamla
+        </p>
+
+      </div>
+
+      <span>
+        {{ achievements.quizMaster ? '🔓' : '🔒' }}
+      </span>
+
+    </div>
+
+
+    <!-- BİLGİ AVCISI -->
+
+    <div
+      class="achievement"
+      [class.locked]="!achievements.knowledgeHunter"
+      [class.unlocked]="achievements.knowledgeHunter"
+    >
+
+      <div class="achievement-icon">
+        🧠
+      </div>
+
+      <div>
+
+        <h3>
+          Bilgi Avcısı
+        </h3>
+
+        <p>
+          50 soru cevapla
+        </p>
+
+      </div>
+
+      <span>
+        {{ achievements.knowledgeHunter ? '🔓' : '🔒' }}
+      </span>
+
+    </div>
+
+
+    <!-- KARARLI ÖĞRENCİ -->
+
+    <div
+      class="achievement"
+      [class.locked]="!achievements.consistentStudent"
+      [class.unlocked]="achievements.consistentStudent"
+    >
+
+      <div class="achievement-icon">
+        🚀
+      </div>
+
+      <div>
+
+        <h3>
+          Kararlı Öğrenci
+        </h3>
+
+        <p>
+          7 farklı gün quiz çöz
+        </p>
+
+      </div>
+
+      <span>
+        {{ achievements.consistentStudent ? '🔓' : '🔒' }}
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+  <!-- AI ASSISTANT -->
+  <section class="ai-section">
+
+    <div class="ai-glow"></div>
+
+    <div class="ai-icon">
+      🤖
+    </div>
+
+    <div class="ai-content">
+
+      <span>INTERN AI</span>
+
+      <h2>
+        Bugün sana nasıl yardımcı olabilirim?
+      </h2>
+
+      <p>
+        Zayıf olduğun konuları analiz et,
+        sana özel quizler oluştur ve öğrenme yolculuğunu hızlandır.
+      </p>
+
+    </div>
+<button
+  class="ai-button"
+  routerLink="/student/ai-assistant">
+
+  AI Asistanı Aç
+  <span>→</span>
+
+</button>
+
+  </section>
+
+
+</div>

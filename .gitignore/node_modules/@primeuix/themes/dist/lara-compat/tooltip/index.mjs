@@ -1,0 +1,1 @@
+var r={maxWidth:"12.5rem",gutter:"0.25rem",shadow:"{overlay.popover.shadow}",padding:"0.625rem 0.75rem",borderRadius:"{overlay.popover.border.radius}",background:"{surface.700}",color:"{surface.0}",fontWeight:"{typography.font.weight}",fontSize:"0.75rem"},o={root:r};export{o as default,r as root};

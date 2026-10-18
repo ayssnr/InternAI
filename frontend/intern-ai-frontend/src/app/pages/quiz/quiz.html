@@ -1,0 +1,331 @@
+<div class="quiz-page">
+
+  <!-- ÜST BAR -->
+  <div class="quiz-top-bar">
+
+    <button
+      class="stop-button"
+      (click)="stopQuiz()"
+    >
+      <span>✕</span>
+      Durdur
+    </button>
+
+    <div
+      class="timer"
+      [class.warning]="remainingTime <= 20"
+      [class.danger]="remainingTime <= 10"
+    >
+      <span class="timer-icon">⏱️</span>
+      <span>{{ remainingTime }} sn</span>
+    </div>
+
+  </div>
+
+
+  <!-- QUIZ BAŞLIĞI -->
+  <div class="quiz-heading">
+
+    <div class="quiz-heading-icon">
+      🧠
+    </div>
+
+    <div>
+      <span class="quiz-label">
+        INTERN AI
+      </span>
+
+      <h1>
+        Quiz Zamanı!
+      </h1>
+
+      <p>
+        Bilgini test et ve kendini geliştir.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- QUIZ DEVAM EDİYOR -->
+  <div
+    *ngIf="questions.length > 0 && !quizFinished"
+    class="quiz-content"
+  >
+
+    <!-- SORU SAYISI + YÜZDE -->
+    <div class="progress-info">
+
+      <span>
+        Soru
+        <strong>
+          {{ currentQuestionIndex + 1 }}
+        </strong>
+        / {{ questions.length }}
+      </span>
+
+      <span>
+        {{ progress | number:'1.0-0' }}%
+      </span>
+
+    </div>
+
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-bar">
+
+      <div
+        class="progress-fill"
+        [style.width.%]="progress"
+      ></div>
+
+    </div>
+
+
+    <!-- SORU KARTI -->
+    <div
+      class="question-card"
+      [class.question-enter]="questionAnimation"
+    >
+
+      <div class="question-number">
+        SORU {{ currentQuestionIndex + 1 }}
+      </div>
+
+      <h2>
+        {{ questions[currentQuestionIndex].text }}
+      </h2>
+
+
+      <!-- CEVAPLAR -->
+      <div class="options">
+
+  <button
+    *ngFor="
+      let option of questions[currentQuestionIndex].options;
+      let i = index
+    "
+    class="option-button"
+
+    (click)="selectAnswer(i)"
+
+    [disabled]="selectedAnswer !== null"
+
+    [class.correct]="
+      selectedAnswer !== null &&
+      i === questions[currentQuestionIndex].correctAnswer
+    "
+
+    [class.wrong]="
+      selectedAnswer === i &&
+      i !== questions[currentQuestionIndex].correctAnswer
+    "
+  >
+
+    <span class="option-number">
+      {{ i + 1 }}
+    </span>
+
+    <span class="option-text">
+      {{ option }}
+    </span>
+
+  </button>
+
+</div>
+
+
+<!-- CEVAPLANDIKTAN SONRA SADECE SONRAKİ SORU -->
+
+<button
+  *ngIf="selectedAnswer !== null"
+  class="next-button"
+  (click)="nextQuestion()"
+>
+
+  <span>
+    {{
+      currentQuestionIndex === questions.length - 1
+        ? 'Quiz’i Bitir'
+        : 'Sonraki Soru'
+    }}
+  </span>
+
+  <span class="next-arrow">
+    →
+  </span>
+
+</button>
+
+    </div>
+
+  </div>
+  <!-- QUIZ SONUCU -->
+<div *ngIf="quizFinished" class="result-card">
+
+  <div class="result-icon">
+    🎉
+  </div>
+
+  <span class="result-label">
+    QUIZ TAMAMLANDI
+  </span>
+
+  <h2>Quiz Tamamlandı!</h2>
+
+  <p class="result-description">
+    Quiz performansın aşağıdaki gibi.
+  </p>
+
+
+  <!-- DİNAMİK SCORE CIRCLE -->
+  <div
+    class="score-circle"
+    [style.background]="
+      'conic-gradient(#6366f1 0% ' +
+      scorePercentage +
+      '%, #e2e8f0 ' +
+      scorePercentage +
+      '% 100%)'
+    "
+  >
+
+    <div class="score-circle-inner">
+
+      <strong>
+        {{ scorePercentage | number:'1.0-0' }}%
+      </strong>
+
+      <span>
+        Başarı
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- RESULT STATS -->
+  <div class="result-stats">
+
+    <div class="result-stat">
+
+      <span class="result-stat-icon">
+        ✅
+      </span>
+
+      <div>
+        <strong>
+          {{ score }}
+        </strong>
+
+        <span>
+          Doğru
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="result-stat">
+
+      <span class="result-stat-icon wrong-icon">
+        ❌
+      </span>
+
+      <div>
+        <strong>
+          {{ questions.length - score }}
+        </strong>
+
+        <span>
+          Yanlış
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="result-stat">
+
+      <span class="result-stat-icon">
+        📝
+      </span>
+
+      <div>
+        <strong>
+          {{ questions.length }}
+        </strong>
+
+        <span>
+          Toplam Soru
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- DİNAMİK MESAJ -->
+
+  <div class="result-message">
+
+    <p *ngIf="scorePercentage >= 80">
+      🌟 Harika! Konuya oldukça hakimsin.
+    </p>
+
+    <p *ngIf="scorePercentage >= 50 && scorePercentage < 80">
+      👍 Güzel! Biraz daha pratikle çok daha iyi olabilirsin.
+    </p>
+
+    <p *ngIf="scorePercentage < 50">
+      💪 Biraz daha çalışmaya ihtiyacın var. Tekrar deneyebilirsin.
+    </p>
+
+  </div>
+
+
+  <!-- BUTTONS -->
+
+  <div class="result-actions">
+
+    <button
+      class="restart-button"
+      (click)="restartQuiz()"
+    >
+      🔄 Tekrar Çöz
+    </button>
+
+    <button
+      class="home-button"
+      routerLink="/dashboard"
+    >
+      🏠 Ana Sayfaya Dön
+    </button>
+
+  </div>
+
+</div>
+
+  <!-- YÜKLENİYOR -->
+  <div
+    *ngIf="questions.length === 0"
+    class="loading"
+  >
+
+    <div class="loading-icon">
+      🧠
+    </div>
+
+    <p>
+      Sorular hazırlanıyor...
+    </p>
+
+    <span>
+      Birkaç saniye içinde başlayacağız.
+    </span>
+
+  </div>
+
+</div>

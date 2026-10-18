@@ -1,0 +1,1 @@
+var r={colorOne:"light-dark({pink.500}, {pink.400})",colorTwo:"light-dark({sky.500}, {sky.400})",colorThree:"light-dark({emerald.500}, {emerald.400})",colorFour:"light-dark({amber.500}, {amber.400})"},o={root:r};export{o as default,r as root};

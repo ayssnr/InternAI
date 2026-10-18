@@ -1,0 +1,1 @@
+import*as e from"@primeuix/styled";export*from"@primeuix/styled";var t=(t,...a)=>e.definePreset(t,...a),a=(...t)=>e.updatePreset(...t),r=t=>e.updatePrimaryPalette(t),s=t=>e.updateSurfacePalette(t),u=(t,...a)=>e.usePreset(t,...a),P=theme=>e.useTheme(theme);export{t as definePreset,a as updatePreset,r as updatePrimaryPalette,s as updateSurfacePalette,u as usePreset,P as useTheme};
