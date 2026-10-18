@@ -1,0 +1,11 @@
+# Frontend
+**/node_modules/
+**/.angular/
+
+# Backend
+**/bin/
+**/obj/
+**/appsettings.Development.json
+
+# Ortak
+.vscode/
